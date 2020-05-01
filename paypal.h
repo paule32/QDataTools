@@ -21,46 +21,26 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 // --------------------------------------------------------------------------------
-#include "qdatatable.h"
-#include "qdatatabledialog.h"
-#include "qdatatabletaskmenu.h"
+#ifndef QDATAPAYPAL_H
+#define QDATAPAYPAL_H
 
-#include <QtDesigner/QDesignerFormEditorInterface>
-#include <QAction>
+#include <QObject>
+#include <QWidget>
 
-QDataTableTaskMenu::QDataTableTaskMenu(QDataTable *wiz, QObject *parent)
-    : QObject(parent)
-    , editStateAction(new QAction(tr("Edit Prpperties..."), this))
-    , dataTable(wiz)
-{
-    connect(editStateAction, &QAction::triggered, this, &QDataTableTaskMenu::editState);
+namespace Ui {
+class qdatapaypal;
 }
 
-void QDataTableTaskMenu::editState()
+class qdatapaypal : public QWidget
 {
-    QDataTableWizard dialog(dataTable);
-    dialog.exec();
-}
+    Q_OBJECT
 
-QList<QAction *> QDataTableTaskMenu::taskActions() const
-{
-    return QList<QAction *>{editStateAction};
-}
+public:
+    explicit qdatapaypal(QWidget *parent = nullptr);
+    ~qdatapaypal();
 
-QDataTableTaskMenuFactory::QDataTableTaskMenuFactory(QExtensionManager *parent)
-    : QExtensionFactory(parent)
-{
-}
+private:
+    Ui::qdatapaypal *ui;
+};
 
-QObject *QDataTableTaskMenuFactory::createExtension(QObject *object,
-                                                   const QString &iid,
-                                                   QObject *parent) const
-{
-    if (iid != Q_TYPEID(QDesignerTaskMenuExtension))
-        return nullptr;
-
-    if (QDataTable * wiz = qobject_cast<QDataTable *>(object))
-        return new QDataTableTaskMenu(wiz, parent);
-
-    return nullptr;
-}
+#endif // PAYPAL_H

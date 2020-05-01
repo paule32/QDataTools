@@ -42,3 +42,7 @@ INSTALLS    += target
 include(qdatacollection.pri)
 include(qdatatimer.pri)
 include(qdatatable.pri)
+
+FORMS += \
+    qdatasqlwintemp.ui
+

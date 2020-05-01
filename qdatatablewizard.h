@@ -26,6 +26,12 @@
 
 #include <QWizard>
 
+#include <QListWidget>
+#include <QListWidgetItem>
+
+#include <QTableWidget>
+#include <QTableWidgetItem>
+
 namespace Ui {
 class QDataTableWizard;
 }
@@ -38,11 +44,16 @@ public:
     explicit QDataTableWizard(QWidget *parent = nullptr);
     ~QDataTableWizard();
 
+    Ui::QDataTableWizard *ui;
+
 private slots:
     void on_connectButton_clicked();
-
-private:
-    Ui::QDataTableWizard *ui;
+    void on_dbListWidget_itemClicked(QListWidgetItem *item);
+    void on_tableListWidget_itemClicked(QListWidgetItem *item);
+    void on_cmdButtonAddTable_clicked();
+    void on_cmdButtonDelTable_clicked();
+    void on_tableWidget_3_itemDoubleClicked(QTableWidgetItem *item);
+    void on_donateButton_clicked();
 };
 
 #endif // QDATATABLEWIZARD_H

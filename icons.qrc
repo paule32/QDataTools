@@ -5,5 +5,6 @@
         <file>img/icon_table.png</file>
         <file>img/icon_dbok.png</file>
         <file>img/icon_dbok2.png</file>
+        <file>img/btn_donateCC_LG.png</file>
     </qresource>
 </RCC>

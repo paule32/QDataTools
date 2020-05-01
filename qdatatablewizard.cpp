@@ -24,11 +24,26 @@
 #include "qdatatablewizard.h"
 #include "ui_qdatatablewizard.h"
 
+#include <QObject>
+#include <QLabel>
+
+#include <QListWidget>
+#include <QListWidgetItem>
+
+#include <QTableWidget>
+#include <QTableWidgetItem>
+
+#include <QDesktopServices>
+#include <QMessageBox>
+
 QDataTableWizard::QDataTableWizard(QWidget *parent) :
     QWizard(parent),
     ui(new Ui::QDataTableWizard)
 {
     ui->setupUi(this);
+    ui->progressBar->setVisible(false);
+    ui->dataLabel  ->setVisible(false);
+    ui->dataTimer  ->setVisible(false);
 }
 
 QDataTableWizard::~QDataTableWizard()
@@ -38,5 +53,52 @@ QDataTableWizard::~QDataTableWizard()
 
 void QDataTableWizard::on_connectButton_clicked()
 {
+    QMessageBox::information(this,"Info","not implemented, yet.");
+}
 
+// database
+void QDataTableWizard::on_dbListWidget_itemClicked(QListWidgetItem *item)
+{
+    if (item->checkState() == Qt::Checked)
+        item->setSelected(false); else
+        item->setSelected(true );
+}
+
+// table
+void QDataTableWizard::on_tableListWidget_itemClicked(QListWidgetItem *item)
+{
+    if (item->checkState() == Qt::Checked)
+        item->setSelected(false); else
+        item->setSelected(true );
+}
+
+// add table
+void QDataTableWizard::on_cmdButtonAddTable_clicked()
+{
+    QListWidgetItem * item = new QListWidgetItem(QLatin1String("New Table"));
+    ui->tableListWidget->addItem(item);
+}
+
+// delete table
+void QDataTableWizard::on_cmdButtonDelTable_clicked()
+{
+    if (ui->tableListWidget->currentItem() == nullptr) {
+        QMessageBox::warning(this,"Warning","You have to do select one or more Table items\nthat can be delete.");
+        return;
+    }
+
+    ui->tableListWidget->removeItemWidget(
+    ui->tableListWidget->currentItem());
+}
+
+// table settings - header
+void QDataTableWizard::on_tableWidget_3_itemDoubleClicked(QTableWidgetItem *item)
+{
+    Q_UNUSED(item)
+}
+
+void QDataTableWizard::on_donateButton_clicked()
+{
+    QUrl _url(QLatin1String("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=AJTNQK38VKWFW&source=url"));
+    QDesktopServices::openUrl(_url);
 }

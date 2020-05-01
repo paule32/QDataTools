@@ -32,3 +32,5 @@ SOURCES += \
     $$PWD/qdatatableplugin.cpp \
     $$PWD/qdatasqlqueryplugin.cpp \
     $$PWD/qdatatoolscollection.cpp
+
+FORMS +=

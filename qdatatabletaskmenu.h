@@ -27,6 +27,8 @@
 #include <QDesignerTaskMenuExtension>
 #include <QExtensionFactory>
 
+#include "qdatatablewizard.h"
+
 QT_BEGIN_NAMESPACE
 class QAction;
 class QExtensionManager;
@@ -39,7 +41,7 @@ class QDataTableTaskMenu : public QObject, public QDesignerTaskMenuExtension
     Q_INTERFACES(QDesignerTaskMenuExtension)
 
 public:
-    explicit QDataTableTaskMenu(QDataTable *tic, QObject *parent);
+    explicit QDataTableTaskMenu(QDataTable *wiz, QObject *parent);
 
     QList<QAction *> taskActions() const override;
 

@@ -41,7 +41,6 @@ private:
     QDataTable * editor;
     QDataTable * dataTable;
 
-    QDataTableWizard * dataTableWizard;
     QDialogButtonBox * buttonBox;
 };
 
