@@ -22,16 +22,13 @@
 # SOFTWARE.
 # --------------------------------------------------------------------------------
 HEADERS += \
-    $$PWD/qdatatable.h \
-    $$PWD/qdatatabledialog.h \
-    $$PWD/qdatatabletaskmenu.h \
-    $$PWD/qdatatablewizard.h
+    $$PWD/qdatatimerplugin.h \
+    $$PWD/qdatatableplugin.h \
+    $$PWD/qdatasqlqueryplugin.h \
+    $$PWD/qdatatoolscollection.h
 
 SOURCES += \
-    $$PWD/qdatatable.cpp \
-    $$PWD/qdatatabledialog.cpp \
-    $$PWD/qdatatabletaskmenu.cpp \
-    $$PWD/qdatatablewizard.cpp
-
-FORMS += \
-    $$PWD/qdatatablewizard.ui
+    $$PWD/qdatatimerplugin.cpp \
+    $$PWD/qdatatableplugin.cpp \
+    $$PWD/qdatasqlqueryplugin.cpp \
+    $$PWD/qdatatoolscollection.cpp

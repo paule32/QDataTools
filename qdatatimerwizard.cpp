@@ -21,28 +21,22 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 // --------------------------------------------------------------------------------
-#ifndef QDATATABLEDIALOG_H
-#define QDATATABLEDIALOG_H
+#include "qdatatimerwizard.h"
+#include "ui_qdatatimerwizard.h"
 
-#include <QDialog>
-#include <QDialogButtonBox>
-
-#include "qdatatable.h"
-#include "qdatatablewizard.h"
-
-class QDataTableDialog : public QDialog
+QDataTimerWizard::QDataTimerWizard(QWidget *parent) :
+    QWizard(parent),
+    ui(new Ui::QDataTimerWizard)
 {
-    Q_OBJECT
+    ui->setupUi(this);
+}
 
-public:
-    explicit QDataTableDialog(QDataTable *tic, QWidget *parent = nullptr);
+QDataTimerWizard::~QDataTimerWizard()
+{
+    delete ui;
+}
 
-private:
-    QDataTable * editor;
-    QDataTable * dataTable;
+void QDataTimerWizard::on_connectButton_clicked()
+{
 
-    QDataTableWizard * dataTableWizard;
-    QDialogButtonBox * buttonBox;
-};
-
-#endif
+}
