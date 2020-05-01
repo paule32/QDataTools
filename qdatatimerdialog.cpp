@@ -44,6 +44,7 @@ QDataTimerDialog::QDataTimerDialog(QDataTimer *tic, QWidget *parent)
     //connect(buttonBox->button(QDialogButtonBox::Reset), &QAbstractButton::clicked, this, &QDataTableDialog::resetState);
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
+    mainLayout->addWidget(editor);
     mainLayout->addWidget(buttonBox);
 
     setLayout(mainLayout);

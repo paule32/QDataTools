@@ -42,7 +42,6 @@ private:
     QDataTimer * editor;
     QDataTimer * dataTimer;
 
-    QDataTimerWizard * dataTimerWizard;
     QDialogButtonBox * buttonBox;
 };
 

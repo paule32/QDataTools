@@ -41,7 +41,7 @@ QDataTimerTaskMenu::QDataTimerTaskMenu(QDataTimer *tic, QObject *parent)
 
 void QDataTimerTaskMenu::editState()
 {
-    QDataTimerDialog dialog(dataTimer);
+    QDataTimerWizard dialog(dataTimer);
     dialog.exec();
 }
 

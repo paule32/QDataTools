@@ -613,7 +613,7 @@ border:0px;</string>
     <widget class="QDataTimer" name="dataTimer">
      <property name="geometry">
       <rect>
-       <x>350</x>
+       <x>340</x>
        <y>160</y>
        <width>42</width>
        <height>42</height>
