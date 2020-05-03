@@ -144,16 +144,6 @@ border:0px;</string>
       <string>     Add Timer</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit">
-     <property name="geometry">
-      <rect>
-       <x>170</x>
-       <y>60</y>
-       <width>113</width>
-       <height>24</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QListWidget" name="listWidget_2">
      <property name="geometry">
       <rect>
@@ -174,18 +164,39 @@ border:0px;</string>
       </rect>
      </property>
      <property name="text">
-      <string>Add Timer Function</string>
+      <string>   Rename Function</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_2">
+    <widget class="QScrollArea" name="scrollArea">
      <property name="geometry">
       <rect>
-       <x>170</x>
-       <y>161</y>
-       <width>113</width>
-       <height>30</height>
+       <x>160</x>
+       <y>60</y>
+       <width>131</width>
+       <height>131</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">border:1px solid black;</string>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>129</width>
+        <height>129</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <layout class="QVBoxLayout" name="scrollLayout"/>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -292,7 +303,7 @@ border:0px;</string>
       <string>  Delete Timer</string>
      </property>
     </widget>
-    <widget class="QPlainTextEdit" name="plainTextEdit">
+    <widget class="QPlainTextEdit" name="timerTextEdit">
      <property name="geometry">
       <rect>
        <x>160</x>
@@ -315,7 +326,7 @@ border:0px;</string>
       <enum>Qt::ScrollBarAlwaysOn</enum>
      </property>
      <property name="plainText">
-      <string>write your code here ...</string>
+      <string>/* write your code here ... */</string>
      </property>
     </widget>
    </widget>

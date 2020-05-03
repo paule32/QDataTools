@@ -21,39 +21,39 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 // --------------------------------------------------------------------------------
-#ifndef QDATATIMERWIZARD_H
-#define QDATATIMERWIZARD_H
+#ifndef MYTIMERSTRINGLIST_H
+#define MYTIMERSTRINGLIST_H
 
-#include <QWizard>
+#include <QObject>
 #include <QLabel>
-#include <QFont>
-#include <QList>
-#include <QListWidget>
-#include <QListWidgetItem>
-#include <QPlainTextEdit>
+#include <QWidget>
 #include <QSpinBox>
+#include <QVBoxLayout>
 
 #include "myspinbox.h"
-#include "mytimerstringlist.h"
 
-namespace Ui {
-class QDataTimerWizard;
-}
-
-class QDataTimerWizard : public QWizard
+class MyTimerStringList
 {
-    Q_OBJECT
 public:
-    explicit QDataTimerWizard(QWidget *parent = nullptr);
-    ~QDataTimerWizard();
+    MyTimerStringList(QWidget * _parent = nullptr);
 
-private slots:
-    void on_connectButton_clicked();
-    void on_commandLinkButton_clicked();
-    void on_listWidget_3_itemChanged(QListWidgetItem *item);
+    QString     getName ()  const  { return name; }
+    QString     getFunc ()  const  { return func; }
+    QString     getCode ()  const  { return code; }
+
+    MySpinBox * getSpin ()  const  { return spin; }
+
+    void setName (QString  value) { name = value; }
+    void setFunc (QString  value) { func = value; }
+    void setCode (QString  value) { code = value; }
 
 private:
-    Ui::QDataTimerWizard *ui;
+    QString  name;
+    QString  func;
+    QString  code;
+
+    MySpinBox * spin   = nullptr;
+    QWidget   * parent = nullptr;
 };
 
-#endif // QDATATABLEWIZARD_H
+#endif // MYTIMERSTRINGLIST_H

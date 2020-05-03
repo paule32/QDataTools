@@ -21,39 +21,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 // --------------------------------------------------------------------------------
-#ifndef QDATATIMERWIZARD_H
-#define QDATATIMERWIZARD_H
-
-#include <QWizard>
-#include <QLabel>
-#include <QFont>
-#include <QList>
-#include <QListWidget>
-#include <QListWidgetItem>
-#include <QPlainTextEdit>
-#include <QSpinBox>
+#include <QWidget>
 
 #include "myspinbox.h"
 #include "mytimerstringlist.h"
 
-namespace Ui {
-class QDataTimerWizard;
-}
-
-class QDataTimerWizard : public QWizard
+MyTimerStringList::MyTimerStringList(QWidget * _parent)
+    : parent(_parent)
 {
-    Q_OBJECT
-public:
-    explicit QDataTimerWizard(QWidget *parent = nullptr);
-    ~QDataTimerWizard();
-
-private slots:
-    void on_connectButton_clicked();
-    void on_commandLinkButton_clicked();
-    void on_listWidget_3_itemChanged(QListWidgetItem *item);
-
-private:
-    Ui::QDataTimerWizard *ui;
-};
-
-#endif // QDATATABLEWIZARD_H
+    spin = new MySpinBox(parent);
+}

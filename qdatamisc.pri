@@ -21,32 +21,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 # --------------------------------------------------------------------------------
-CONFIG   += plugin release
-TARGET   = $$qtLibraryTarget(qdatatoolscollectionplugin)
-TEMPLATE = lib
+HEADERS += \
+    $$PWD/myspinbox.h \
+    $$PWD/mytimerstringlist.h
 
-QT += widgets
-
-RESOURCES += icons.qrc
-LIBS      += -L.
-
-greaterThan(QT_MAJOR_VERSION, 4) {
-    QT += designer
-} else {
-    CONFIG += designer
-}
-
-target.path = $$[QT_INSTALL_PLUGINS]/designer
-INSTALLS    += target
-
-include(qdatacollection.pri)
-include(qdatamisc.pri)
-include(qdatatimer.pri)
-include(qdatatable.pri)
-
-FORMS += \
-    qdatasqlwintemp.ui
-
-HEADERS +=
-
-SOURCES +=
+SOURCES += \
+    $$PWD/myspinbox.cpp \
+    $$PWD/mytimerstringlist.cpp

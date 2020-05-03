@@ -21,39 +21,37 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 // --------------------------------------------------------------------------------
-#ifndef QDATATIMERWIZARD_H
-#define QDATATIMERWIZARD_H
+#ifndef MYSPINBOX_H
+#define MYSPINBOX_H
 
-#include <QWizard>
-#include <QLabel>
-#include <QFont>
-#include <QList>
-#include <QListWidget>
-#include <QListWidgetItem>
-#include <QPlainTextEdit>
+#include <QObject>
+#include <QWidget>
 #include <QSpinBox>
+#include <QLabel>
+#include <QVBoxLayout>
 
-#include "myspinbox.h"
-#include "mytimerstringlist.h"
-
-namespace Ui {
-class QDataTimerWizard;
-}
-
-class QDataTimerWizard : public QWizard
+class MySpinBox : public QWidget
 {
     Q_OBJECT
 public:
-    explicit QDataTimerWizard(QWidget *parent = nullptr);
-    ~QDataTimerWizard();
+    MySpinBox(QWidget * parent = nullptr);
 
-private slots:
-    void on_connectButton_clicked();
-    void on_commandLinkButton_clicked();
-    void on_listWidget_3_itemChanged(QListWidgetItem *item);
+    uint32_t   getValue() const { return spin_box->value(); }
+
+    QLabel   * getLabel() const { return spin_lbl; }
+    QFont      getFont () const { return spin_fnt; }
+    QSpinBox * getSpin () const { return spin_box; }
+
+    void setLabel(QLabel * value) { spin_lbl = value; }
+    void setFont (QFont    value) { spin_fnt = value; }
+
+    void setLabel(QString  value) { spin_lbl->setText (value); }
+    void setValue(uint32_t value) { spin_box->setValue(value); }
 
 private:
-    Ui::QDataTimerWizard *ui;
+    QSpinBox * spin_box = nullptr;
+    QLabel   * spin_lbl = nullptr;
+    QFont      spin_fnt;
 };
 
-#endif // QDATATABLEWIZARD_H
+#endif // MYSPINBOX_H
