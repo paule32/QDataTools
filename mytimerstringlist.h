@@ -36,6 +36,7 @@ class MyTimerStringList
 {
 public:
     MyTimerStringList(QWidget * _parent = nullptr);
+    MyTimerStringList(QString txt);
 
     QString     getName ()  const  { return name; }
     QString     getFunc ()  const  { return func; }
@@ -52,8 +53,8 @@ private:
     QString  func;
     QString  code;
 
-    MySpinBox * spin   = nullptr;
-    QWidget   * parent = nullptr;
+    MySpinBox * spin  ;
+    QWidget   * parent;
 };
 
 #endif // MYTIMERSTRINGLIST_H

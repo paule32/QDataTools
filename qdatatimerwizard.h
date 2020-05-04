@@ -49,8 +49,8 @@ public:
 
 private slots:
     void on_connectButton_clicked();
-    void on_commandLinkButton_clicked();
     void on_listWidget_3_itemChanged(QListWidgetItem *item);
+    void on_commandLinkButton_4_clicked();
 
 private:
     Ui::QDataTimerWizard *ui;

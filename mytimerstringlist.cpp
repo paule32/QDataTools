@@ -22,6 +22,7 @@
 // SOFTWARE.
 // --------------------------------------------------------------------------------
 #include <QWidget>
+#include <QMessageBox>
 
 #include "myspinbox.h"
 #include "mytimerstringlist.h"
@@ -30,4 +31,9 @@ MyTimerStringList::MyTimerStringList(QWidget * _parent)
     : parent(_parent)
 {
     spin = new MySpinBox(parent);
+}
+
+MyTimerStringList::MyTimerStringList(QString txt)
+{
+    spin = new MySpinBox(nullptr,txt);
 }

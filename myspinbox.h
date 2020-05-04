@@ -34,24 +34,26 @@ class MySpinBox : public QWidget
 {
     Q_OBJECT
 public:
-    MySpinBox(QWidget * parent = nullptr);
+    MySpinBox(QWidget * parent = nullptr, QString txt = "Text");
 
     uint32_t   getValue() const { return spin_box->value(); }
 
-    QLabel   * getLabel() const { return spin_lbl; }
-    QFont      getFont () const { return spin_fnt; }
-    QSpinBox * getSpin () const { return spin_box; }
+    QLabel   * getLabel    () const { return spin_lbl; }
+    QString    getLabelText() const { return spin_txt; }
+    QFont      getFont     () const { return spin_fnt; }
+    QSpinBox * getSpin     () const { return spin_box; }
 
     void setLabel(QLabel * value) { spin_lbl = value; }
     void setFont (QFont    value) { spin_fnt = value; }
 
-    void setLabel(QString  value) { spin_lbl->setText (value); }
+    void setLabel(QString  value) { spin_txt = value; spin_lbl->setText (value); }
     void setValue(uint32_t value) { spin_box->setValue(value); }
 
 private:
-    QSpinBox * spin_box = nullptr;
-    QLabel   * spin_lbl = nullptr;
+    QSpinBox * spin_box;
+    QLabel   * spin_lbl;
     QFont      spin_fnt;
+    QString    spin_txt;
 };
 
 #endif // MYSPINBOX_H

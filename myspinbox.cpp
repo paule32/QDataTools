@@ -24,18 +24,25 @@
 #include "myspinbox.h"
 #include <QWidget>
 #include <QSpinBox>
+#include <QMessageBox>
 
-MySpinBox::MySpinBox(QWidget * parent)
+MySpinBox::MySpinBox(QWidget * parent, QString txt)
     : QWidget(parent)
 {
+    setMinimumWidth(100);
+    setMinimumHeight(74);
+
+    QVBoxLayout * _lay = new QVBoxLayout;
+
+    spin_lbl = new QLabel(this);
     spin_box = new QSpinBox(this);
-    spin_lbl = new QLabel  (this);
 
-    spin_fnt.setBold(true);
+    spin_lbl->setText(txt);
+    spin_box->setRange(500,1000*60);
+    spin_box->setValue(1000);
 
-    spin_lbl->setStyleSheet("background-color:rgba(0,0,0,0);border:0px;");
-    //spin_lbl->setFont(spin_fnt);
-    spin_lbl->setVisible(true);
+    _lay->addWidget(spin_lbl);
+    _lay->addWidget(spin_box);
 
-    setValue(1002);
+    setLayout(_lay);
 }
