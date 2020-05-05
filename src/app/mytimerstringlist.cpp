@@ -33,7 +33,7 @@ MyTimerStringList::MyTimerStringList(QWidget * _parent)
     spin = new MySpinBox(parent);
 }
 
-MyTimerStringList::MyTimerStringList(QString txt)
+MyTimerStringList::MyTimerStringList(QVBoxLayout *lay, QString txt)
 {
-    spin = new MySpinBox(nullptr,txt);
+    spin = new MySpinBox(lay,nullptr,txt);
 }

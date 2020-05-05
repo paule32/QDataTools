@@ -21,28 +21,41 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 // --------------------------------------------------------------------------------
-#include "myspinbox.h"
-#include <QWidget>
+#ifndef QDATATIMERWIZARD_H
+#define QDATATIMERWIZARD_H
+
+#include <QWizard>
+#include <QLabel>
+#include <QFont>
+#include <QList>
+#include <QListWidget>
+#include <QListWidgetItem>
+#include <QPlainTextEdit>
 #include <QSpinBox>
-#include <QMessageBox>
 
-MySpinBox::MySpinBox(QWidget * parent, QString txt)
-    : QWidget(parent)
-{
-    setMinimumWidth(100);
-    setMinimumHeight(74);
+#include "myspinbox.h"
+#include "mytimerstringlist.h"
 
-    QVBoxLayout * _lay = new QVBoxLayout;
-
-    spin_lbl = new QLabel(this);
-    spin_box = new QSpinBox(this);
-
-    spin_lbl->setText(txt);
-    spin_box->setRange(500,1000*60);
-    spin_box->setValue(1000);
-
-    _lay->addWidget(spin_lbl);
-    _lay->addWidget(spin_box);
-
-    setLayout(_lay);
+namespace Ui {
+class QDataTimerWizard;
 }
+
+class QDataTimerWizard : public QWizard
+{
+    Q_OBJECT
+public:
+    explicit QDataTimerWizard(QWidget *parent = nullptr);
+    ~QDataTimerWizard();
+
+private slots:
+    void on_connectButton_clicked();
+    void on_listWidget_3_itemChanged(QListWidgetItem *item);
+    void on_commandLinkButton_4_clicked();
+
+    void on_toolButton_clicked();
+
+private:
+    Ui::QDataTimerWizard *ui;
+};
+
+#endif // QDATATABLEWIZARD_H

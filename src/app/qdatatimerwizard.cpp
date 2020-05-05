@@ -26,6 +26,10 @@
 #include "qdatatimerwizard.h"
 #include "ui_qdatatimerwizard.h"
 
+#include "keywordspopup.h"
+#include "ui_keywordspopup.h"
+
+#include <QLineEdit>
 #include <QLabel>
 #include <QString>
 #include <QSpinBox>
@@ -34,8 +38,8 @@
 
 #include <QVector>
 
-uint32_t                     timerCounter;
-QVector<MyTimerStringList *> timerList;
+uint32_t                   timerCounter;
+QVector<MyTimerStringList> timerList;
 
 QDataTimerWizard::QDataTimerWizard(QWidget *parent) :
     QWizard(parent),
@@ -45,18 +49,14 @@ QDataTimerWizard::QDataTimerWizard(QWidget *parent) :
 
     // check prev. data ...
     //MyTimerStringList * str_list;
-    for (MyTimerStringList *vlist: timerList) {
-        ui->listWidget  ->addItem(vlist->getName());
-        ui->listWidget_2->addItem(vlist->getFunc());
-        ui->listWidget_3->addItem(vlist->getName());
-    }
+    for (MyTimerStringList vlist: timerList) {
+        ui->listWidget  ->addItem(vlist.getName());
+        ui->listWidget_2->addItem(vlist.getFunc());
+        ui->listWidget_3->addItem(vlist.getName());
 
-    if (timerList.count() > 0) {
-        if (timerList.at(0) == nullptr) {
-            QMessageBox::warning(this,"Error","Internal Error");
-            return;
-        }
-        ui->scrollLayout->addWidget(timerList.at(0)->getSpin());
+        MyTimerStringList *line_1 = new MyTimerStringList(
+        ui->scrollLayout,vlist.getName());
+        line_1->setValue(vlist.getValue());
     }
 }
 
@@ -73,19 +73,20 @@ void QDataTimerWizard::on_connectButton_clicked()
 // timer function's ...
 void QDataTimerWizard::on_commandLinkButton_4_clicked()
 {
-    MyTimerStringList * str_list = new MyTimerStringList(
+    MyTimerStringList str_list(
+    ui->scrollLayout,
     QString("Timer%1").arg(++timerCounter));
 
-    str_list->setName(QString("Timer%1")       .arg(timerCounter));
-    str_list->setFunc(QString("Timer%1_onShot").arg(timerCounter));
+    str_list.setName(QString("Timer%1")       .arg(timerCounter));
+    str_list.setFunc(QString("Timer%1_onShot").arg(timerCounter));
 
-    timerList.push_back(str_list);
+    timerList << str_list;
 
-    ui->listWidget  ->addItem(str_list->getName());
-    ui->listWidget_2->addItem(str_list->getFunc());
-    ui->listWidget_3->addItem(str_list->getName());
+    ui->listWidget  ->addItem(str_list.getName());
+    ui->listWidget_2->addItem(str_list.getFunc());
+    ui->listWidget_3->addItem(str_list.getName());
 
-    ui->scrollLayout->addWidget(str_list->getSpin());
+    ui->scrollLayout->addWidget(str_list.getSpin());
 }
 
 // timer code
@@ -100,4 +101,9 @@ void QDataTimerWizard::on_listWidget_3_itemChanged(QListWidgetItem *item)
         }
     }
 #endif
+}
+
+void QDataTimerWizard::on_toolButton_clicked()
+{
+    KeyWordsPopUp *pop = new KeyWordsPopUp(this);
 }

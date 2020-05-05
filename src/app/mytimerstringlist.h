@@ -21,39 +21,45 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 // --------------------------------------------------------------------------------
-#ifndef QDATATIMERWIZARD_H
-#define QDATATIMERWIZARD_H
+#ifndef MYTIMERSTRINGLIST_H
+#define MYTIMERSTRINGLIST_H
 
-#include <QWizard>
+#include <QObject>
 #include <QLabel>
-#include <QFont>
-#include <QList>
-#include <QListWidget>
-#include <QListWidgetItem>
-#include <QPlainTextEdit>
+#include <QWidget>
 #include <QSpinBox>
+#include <QVBoxLayout>
 
 #include "myspinbox.h"
-#include "mytimerstringlist.h"
 
-namespace Ui {
-class QDataTimerWizard;
-}
-
-class QDataTimerWizard : public QWizard
+class MyTimerStringList
 {
-    Q_OBJECT
 public:
-    explicit QDataTimerWizard(QWidget *parent = nullptr);
-    ~QDataTimerWizard();
+    MyTimerStringList(QWidget * _parent = nullptr);
+    MyTimerStringList(QVBoxLayout *lay, QString txt);
 
-private slots:
-    void on_connectButton_clicked();
-    void on_listWidget_3_itemChanged(QListWidgetItem *item);
-    void on_commandLinkButton_4_clicked();
+    QString     getName ()  const { return name; }
+    QString     getFunc ()  const { return func; }
+    QString     getCode ()  const { return code; }
+
+    MySpinBox * getSpin ()  const { return spin;    }
+    uint32_t    getValue()  const { return m_value; }
+
+    void setSpin(MySpinBox  * sp) { spin = sp;       }
+    void setValue(uint32_t value) { m_value = value; }
+
+    void setName (QString  value) { name = value; }
+    void setFunc (QString  value) { func = value; }
+    void setCode (QString  value) { code = value; }
 
 private:
-    Ui::QDataTimerWizard *ui;
+    QString  name;
+    QString  func;
+    QString  code;
+
+    uint32_t    m_value = 1000;
+    MySpinBox * spin  ;
+    QWidget   * parent;
 };
 
-#endif // QDATATABLEWIZARD_H
+#endif // MYTIMERSTRINGLIST_H

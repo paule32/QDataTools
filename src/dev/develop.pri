@@ -21,32 +21,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 # --------------------------------------------------------------------------------
-CONFIG   += plugin release
-TARGET   = $$qtLibraryTarget(qdatatoolscollectionplugin)
-TEMPLATE = lib
-
-QT += widgets
-
-RESOURCES += icons.qrc
-LIBS      += -L.
-
-greaterThan(QT_MAJOR_VERSION, 4) {
-    QT += designer
-} else {
-    CONFIG += designer
-}
-
-target.path = $$[QT_INSTALL_PLUGINS]/designer
-INSTALLS    += target
-
-include(qdatacollection.pri)
-include(qdatamisc.pri)
-include(qdatatimer.pri)
-include(qdatatable.pri)
-
 FORMS += \
-    qdatasqlwintemp.ui
+    keywordspopup.ui
 
-HEADERS +=
+HEADERS += \
+    $$PWD/keywordspopup.h
 
-SOURCES +=
+SOURCES += \
+    $$PWD/keywordspopup.cpp

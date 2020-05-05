@@ -21,40 +21,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 // --------------------------------------------------------------------------------
-#ifndef MYTIMERSTRINGLIST_H
-#define MYTIMERSTRINGLIST_H
+#ifndef KEYWORDSPOPUP_H
+#define KEYWORDSPOPUP_H
 
-#include <QObject>
-#include <QLabel>
 #include <QWidget>
-#include <QSpinBox>
-#include <QVBoxLayout>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
 
-#include "myspinbox.h"
+namespace Ui {
+class KeyWordsPopUp;
+}
 
-class MyTimerStringList
+class KeyWordsPopUp : public QWidget
 {
+    Q_OBJECT
+
 public:
-    MyTimerStringList(QWidget * _parent = nullptr);
-    MyTimerStringList(QString txt);
+    explicit KeyWordsPopUp(QWidget *parent = nullptr);
+    ~KeyWordsPopUp();
 
-    QString     getName ()  const  { return name; }
-    QString     getFunc ()  const  { return func; }
-    QString     getCode ()  const  { return code; }
-
-    MySpinBox * getSpin ()  const  { return spin; }
-
-    void setName (QString  value) { name = value; }
-    void setFunc (QString  value) { func = value; }
-    void setCode (QString  value) { code = value; }
+private slots:
+    void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
 
 private:
-    QString  name;
-    QString  func;
-    QString  code;
-
-    MySpinBox * spin  ;
-    QWidget   * parent;
+    Ui::KeyWordsPopUp *ui;
 };
 
-#endif // MYTIMERSTRINGLIST_H
+#endif // KEYWORDSPOPUP_H
