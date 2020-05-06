@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 # MIT License
 #
 # Copyright (c) 2020 Jens Kallup
@@ -20,12 +20,18 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-# ------------------------------------------------------------------------------
-TEMPLATE = subdirs
-SUBDIRS  = app dev
+# --------------------------------------------------------------------------------
+HEADERS += \
+    $$PWD/qdatatable.h \
+    $$PWD/qdatatabledialog.h \
+    $$PWD/qdatatabletaskmenu.h \
+    $$PWD/qdatatablewizard.h
 
-# where to find the sub projects - give the folders
-app.subdir  = app
-dev.subdir  = dev
+SOURCES += \
+    $$PWD/qdatatable.cpp \
+    $$PWD/qdatatabledialog.cpp \
+    $$PWD/qdatatabletaskmenu.cpp \
+    $$PWD/qdatatablewizard.cpp
 
-app.depends = dev
+FORMS += \
+    $$PWD/qdatatablewizard.ui

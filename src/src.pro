@@ -22,10 +22,11 @@
 # SOFTWARE.
 # ------------------------------------------------------------------------------
 TEMPLATE = subdirs
-SUBDIRS  = app dev
+SUBDIRS  = dev
 
 # where to find the sub projects - give the folders
-app.subdir  = app
-dev.subdir  = dev
+dev.subdir = dev
+run.subdir = run
 
-app.depends = dev
+# what sub project depends on others
+#run.depends = dev

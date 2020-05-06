@@ -21,11 +21,25 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 # ------------------------------------------------------------------------------
-TEMPLATE = subdirs
-SUBDIRS  = app dev
+CONFIG     += plugin release
+TARGET      = $$qtLibraryTarget(paule32_ButtonsEmail)
+TEMPLATE    = lib
 
-# where to find the sub projects - give the folders
-app.subdir  = app
-dev.subdir  = dev
+QT += designer widgets
 
-app.depends = dev
+TOPDIR      = $$PWD
+UI_DIR      = $${TOPDIR}/.uic
+MOC_DIR     = $${TOPDIR}/.moc
+OBJECTS_DIR = $${TOPDIR}/.obj
+RCC_DIR     = $${TOPDIR}/.res
+
+DEFINES += BUILDTIME=\\\"$$system(date '+%H:%M:%S')\\\"
+DEFINES += BUILDDATE=\\\"$$system(date '+%Y-%m-%d')\\\"
+
+target.path  = $$[QT_INSTALL_PLUGINS]/designer
+INSTALLS    += target
+
+# include files from other project stuff ...
+INCLUDEPATH += \
+    $${TOPDIR}/../../dev \
+    $${TOPDIR}/../../dev/.uic

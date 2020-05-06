@@ -22,10 +22,12 @@
 # SOFTWARE.
 # ------------------------------------------------------------------------------
 TEMPLATE = subdirs
-SUBDIRS  = app dev
+SUBDIRS  = email facebook paypal
 
 # where to find the sub projects - give the folders
-app.subdir  = app
-dev.subdir  = dev
+email.subdir    = email
+facebook.subdir = facebook
+paypal.subdir   = paypal
 
-app.depends = dev
+# what sub project depends on others
+# app.depends = dev

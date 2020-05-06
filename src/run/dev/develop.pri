@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 # MIT License
 #
 # Copyright (c) 2020 Jens Kallup
@@ -20,12 +20,22 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-# ------------------------------------------------------------------------------
-TEMPLATE = subdirs
-SUBDIRS  = app dev
+# --------------------------------------------------------------------------------
+FORMS += \
+    $$PWD/mysqlbuilder.ui \
+    $$PWD/mycodeeditor.ui \
+    $$PWD/keywordspopup.ui
 
-# where to find the sub projects - give the folders
-app.subdir  = app
-dev.subdir  = dev
+HEADERS += \
+    $$PWD/mysqlbuilder.h \
+    $$PWD/keywordspopup.h \
+    $$PWD/mycodeeditor.h \
+    $$PWD/mycodeeditorgutter.h \
+    $$PWD/mycodeeditorhighlighter.h
 
-app.depends = dev
+SOURCES += \
+    $$PWD/mysqlbuilder.cpp \
+    $$PWD/keywordspopup.cpp \
+    $$PWD/mycodeeditor.cpp \
+    $$PWD/mycodeeditorgutter.cpp \
+    $$PWD/mycodeeditorhighlighter.cpp

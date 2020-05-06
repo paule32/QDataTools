@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 # MIT License
 #
 # Copyright (c) 2020 Jens Kallup
@@ -20,12 +20,18 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-# ------------------------------------------------------------------------------
-TEMPLATE = subdirs
-SUBDIRS  = app dev
+# --------------------------------------------------------------------------------
+HEADERS += \
+    $$PWD/qdatatimer.h \
+    $$PWD/qdatatimerdialog.h \
+    $$PWD/qdatatimertaskmenu.h \
+    $$PWD/qdatatimerwizard.h
 
-# where to find the sub projects - give the folders
-app.subdir  = app
-dev.subdir  = dev
+SOURCES += \
+    $$PWD/qdatatimer.cpp \
+    $$PWD/qdatatimerdialog.cpp \
+    $$PWD/qdatatimertaskmenu.cpp \
+    $$PWD/qdatatimerwizard.cpp
 
-app.depends = dev
+FORMS += \
+    $$PWD/qdatatimerwizard.ui

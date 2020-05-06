@@ -22,10 +22,10 @@
 # SOFTWARE.
 # ------------------------------------------------------------------------------
 TEMPLATE = subdirs
-SUBDIRS  = app dev
+SUBDIRS  = sql
 
 # where to find the sub projects - give the folders
-app.subdir  = app
-dev.subdir  = dev
+sql.subdir  = sql
 
-app.depends = dev
+# what sub project depends on others
+# app.depends = dev
