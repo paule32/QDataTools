@@ -25,7 +25,6 @@
 #define MYPAYPALBUTTONWIDGET_H
 
 #include <QWidget>
-#include "ui_mypaypalbuttonwidget.h"
 
 namespace Ui {
 class MyPayPalButtonWidget;
@@ -34,13 +33,8 @@ class MyPayPalButtonWidget;
 class MyPayPalButtonWidget : public QWidget
 {
     Q_OBJECT
-
 public:
     explicit MyPayPalButtonWidget(QWidget *parent = nullptr);
-    ~MyPayPalButtonWidget();
-
-private:
-    Ui::MyPayPalButtonWidget *ui;
 };
 
 #endif // MYPAYPALBUTTONWIDGET_H

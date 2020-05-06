@@ -22,16 +22,8 @@
 // SOFTWARE.
 // --------------------------------------------------------------------------------
 #include "mypaypalbuttonwidget.h"
-#include "ui_mypaypalbuttonwidget.h"
 
 MyPayPalButtonWidget::MyPayPalButtonWidget(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::MyPayPalButtonWidget)
 {
-    ui->setupUi(this);
-}
-
-MyPayPalButtonWidget::~MyPayPalButtonWidget()
-{
-    delete ui;
 }

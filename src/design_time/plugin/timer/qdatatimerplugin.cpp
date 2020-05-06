@@ -70,7 +70,7 @@ QString QDataTimerPlugin::name() const
 
 QString QDataTimerPlugin::group() const
 {
-    return QLatin1String("DataBase Widget's");
+    return QLatin1String("Tool Widget's");
 }
 
 QIcon QDataTimerPlugin::icon() const

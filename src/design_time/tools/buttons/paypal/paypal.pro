@@ -53,7 +53,6 @@ FORMS += \
 
 HEADERS += \
     &&PWD/mypaypalbuttoncollection.h \
-    $$PWD/mypaypalbuttonwidget.h \
     $$PWD/mypaypalbuttondialog.h \
     $$PWD/mypaypalbuttonplugin.h \
     $$PWD/mypaypalbuttontaskmenu.h \
@@ -62,7 +61,6 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/mypaypalbuttoncollection.cpp \
-    $$PWD/mypaypalbuttonwidget.cpp \
     $$PWD/mypaypalbuttondialog.cpp \
     $$PWD/mypaypalbuttonplugin.cpp \
     $$PWD/mypaypalbuttontaskmenu.cpp \
