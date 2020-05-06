@@ -24,6 +24,6 @@
 #include "mypaypalbuttonwidget.h"
 
 MyPayPalButtonWidget::MyPayPalButtonWidget(QWidget *parent) :
-    QWidget(parent),
+    QWidget(parent)
 {
 }

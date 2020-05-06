@@ -19,12 +19,12 @@ DISTFILES += \
 ## Either set the IDE_SOURCE_TREE when running qmake,
 ## or set the QTC_SOURCE environment variable, to override the default setting
 isEmpty(IDE_SOURCE_TREE): IDE_SOURCE_TREE = $$(QTC_SOURCE)
-isEmpty(IDE_SOURCE_TREE): IDE_SOURCE_TREE = "/home/paule32/Projects/Qt/Tools/QtCreator/dev"
+isEmpty(IDE_SOURCE_TREE): IDE_SOURCE_TREE = $$system(echo $QTDIR)/Tools/QtCreator/dev
 
 ## Either set the IDE_BUILD_TREE when running qmake,
 ## or set the QTC_BUILD environment variable, to override the default setting
 isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = $$(QTC_BUILD)
-isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = "/home/paule32/Projects/Qt/Tools/QtCreator"
+isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = $$system(echo $QTDIR)/Tools/QtCreator
 
 ## uncomment to build plugin into user config directory
 ## <localappdata>/plugins/<ideversion>

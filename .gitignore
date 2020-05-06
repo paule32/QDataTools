@@ -1,0 +1,14 @@
+# ignore files
+Makefile
+Makefile.Debug
+Makefile.Release
+*.autsave
+*.lib
+*.moc
+*.obj
+*.o
+*.qmake.stash
+*.res
+*.uic
+ui_*.h
+*.user

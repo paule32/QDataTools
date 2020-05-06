@@ -26,10 +26,6 @@
 
 #include <QWidget>
 
-namespace Ui {
-class MyPayPalButtonWidget;
-}
-
 class MyPayPalButtonWidget : public QWidget
 {
     Q_OBJECT

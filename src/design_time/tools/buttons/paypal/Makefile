@@ -14,7 +14,7 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DBUILDTIME=\"19:33:59\" -DBUILDDATE=\"2020-05-06\" -DQT_NO_DEBUG -DQT_PLUGIN -DQT_DESIGNER_LIB -DQT_UIPLUGIN_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT_CORE_LIB -DQDESIGNER_EXPORT_WIDGETS
+DEFINES       = -DBUILDTIME=\"19:50:29\" -DBUILDDATE=\"2020-05-06\" -DQT_NO_DEBUG -DQT_PLUGIN -DQT_DESIGNER_LIB -DQT_UIPLUGIN_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT_CORE_LIB -DQDESIGNER_EXPORT_WIDGETS
 CFLAGS        = -pipe -O2 -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -O2 -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
 INCPATH       = -I. -I.uic -I. -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtDesigner -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtUiPlugin -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtWidgets -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtXml -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore -I.moc -isystem /usr/include/libdrm -I.uic -I/home/paule32/Projects/Qt/5.14.2/gcc_64/mkspecs/linux-g++
@@ -56,22 +56,26 @@ SOURCES       = mypaypalbuttoncollection.cpp \
 		mypaypalbuttondialog.cpp \
 		mypaypalbuttonplugin.cpp \
 		mypaypalbuttontaskmenu.cpp \
-		mypaypalbuttonwizard.cpp .res/qrc_icons.cpp \
+		mypaypalbuttonwizard.cpp \
+		mypaypalbuttonwidget.cpp .res/qrc_icons.cpp \
 		.moc/moc_mypaypalbuttondialog.cpp \
 		.moc/moc_mypaypalbuttonplugin.cpp \
 		.moc/moc_mypaypalbuttontaskmenu.cpp \
 		.moc/moc_mypaypalbuttonwizard.cpp \
+		.moc/moc_mypaypalbuttonwidget.cpp \
 		.moc/moc_mypaypalcollection.cpp
 OBJECTS       = .obj/mypaypalbuttoncollection.o \
 		.obj/mypaypalbuttondialog.o \
 		.obj/mypaypalbuttonplugin.o \
 		.obj/mypaypalbuttontaskmenu.o \
 		.obj/mypaypalbuttonwizard.o \
+		.obj/mypaypalbuttonwidget.o \
 		.obj/qrc_icons.o \
 		.obj/moc_mypaypalbuttondialog.o \
 		.obj/moc_mypaypalbuttonplugin.o \
 		.obj/moc_mypaypalbuttontaskmenu.o \
 		.obj/moc_mypaypalbuttonwizard.o \
+		.obj/moc_mypaypalbuttonwidget.o \
 		.obj/moc_mypaypalcollection.o
 DIST          = /home/paule32/Projects/Qt/5.14.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/paule32/Projects/Qt/5.14.2/gcc_64/mkspecs/common/unix.conf \
@@ -266,11 +270,13 @@ DIST          = /home/paule32/Projects/Qt/5.14.2/gcc_64/mkspecs/features/spec_pr
 		mypaypalbuttonplugin.h \
 		mypaypalbuttontaskmenu.h \
 		mypaypalbuttonwizard.h \
+		mypaypalbuttonwidget.h \
 		mypaypalcollection.h mypaypalbuttoncollection.cpp \
 		mypaypalbuttondialog.cpp \
 		mypaypalbuttonplugin.cpp \
 		mypaypalbuttontaskmenu.cpp \
-		mypaypalbuttonwizard.cpp
+		mypaypalbuttonwizard.cpp \
+		mypaypalbuttonwidget.cpp
 QMAKE_TARGET  = paule32_ButtonPayPal
 DESTDIR       = .lib/
 TARGET        = libpaule32_ButtonPayPal.so
@@ -685,8 +691,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents icons.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /home/paule32/Projects/Qt/5.14.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents &&PWD/mypaypalbuttoncollection.h mypaypalbuttondialog.h mypaypalbuttonplugin.h mypaypalbuttontaskmenu.h mypaypalbuttonwizard.h mypaypalcollection.h $(DISTDIR)/
-	$(COPY_FILE) --parents mypaypalbuttoncollection.cpp mypaypalbuttondialog.cpp mypaypalbuttonplugin.cpp mypaypalbuttontaskmenu.cpp mypaypalbuttonwizard.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents &&PWD/mypaypalbuttoncollection.h mypaypalbuttondialog.h mypaypalbuttonplugin.h mypaypalbuttontaskmenu.h mypaypalbuttonwizard.h mypaypalbuttonwidget.h mypaypalcollection.h $(DISTDIR)/
+	$(COPY_FILE) --parents mypaypalbuttoncollection.cpp mypaypalbuttondialog.cpp mypaypalbuttonplugin.cpp mypaypalbuttontaskmenu.cpp mypaypalbuttonwizard.cpp mypaypalbuttonwidget.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mypaypalbuttonwizard.ui $(DISTDIR)/
 
 
@@ -725,9 +731,9 @@ compiler_moc_predefs_clean:
 .moc/moc_predefs.h: /home/paule32/Projects/Qt/5.14.2/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -Wall -Wextra -dM -E -o .moc/moc_predefs.h /home/paule32/Projects/Qt/5.14.2/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: .moc/moc_mypaypalbuttondialog.cpp .moc/moc_mypaypalbuttonplugin.cpp .moc/moc_mypaypalbuttontaskmenu.cpp .moc/moc_mypaypalbuttonwizard.cpp .moc/moc_mypaypalcollection.cpp
+compiler_moc_header_make_all: .moc/moc_mypaypalbuttondialog.cpp .moc/moc_mypaypalbuttonplugin.cpp .moc/moc_mypaypalbuttontaskmenu.cpp .moc/moc_mypaypalbuttonwizard.cpp .moc/moc_mypaypalbuttonwidget.cpp .moc/moc_mypaypalcollection.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) .moc/moc_mypaypalbuttondialog.cpp .moc/moc_mypaypalbuttonplugin.cpp .moc/moc_mypaypalbuttontaskmenu.cpp .moc/moc_mypaypalbuttonwizard.cpp .moc/moc_mypaypalcollection.cpp
+	-$(DEL_FILE) .moc/moc_mypaypalbuttondialog.cpp .moc/moc_mypaypalbuttonplugin.cpp .moc/moc_mypaypalbuttontaskmenu.cpp .moc/moc_mypaypalbuttonwizard.cpp .moc/moc_mypaypalbuttonwidget.cpp .moc/moc_mypaypalcollection.cpp
 .moc/moc_mypaypalbuttondialog.cpp: mypaypalbuttondialog.h \
 		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtWidgets/QDialog \
 		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtWidgets/qdialog.h \
@@ -1265,6 +1271,115 @@ compiler_moc_header_clean:
 		.moc/moc_predefs.h \
 		/home/paule32/Projects/Qt/5.14.2/gcc_64/bin/moc
 	/home/paule32/Projects/Qt/5.14.2/gcc_64/bin/moc $(DEFINES) --include /home/paule32/Projects/qttest/DataTools/datatools/src/design_time/tools/buttons/paypal/.moc/moc_predefs.h -I/home/paule32/Projects/Qt/5.14.2/gcc_64/mkspecs/linux-g++ -I/home/paule32/Projects/qttest/DataTools/datatools/src/design_time/tools/buttons/paypal -I/home/paule32/Projects/qttest/DataTools/datatools/src/design_time/tools/buttons/paypal/.uic -I/home/paule32/Projects/qttest/DataTools/datatools/src/design_time/tools/buttons/paypal -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtDesigner -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtUiPlugin -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtWidgets -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtXml -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mypaypalbuttonwizard.h -o .moc/moc_mypaypalbuttonwizard.cpp
+
+.moc/moc_mypaypalbuttonwidget.cpp: mypaypalbuttonwidget.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtWidgets/QWidget \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtWidgets/qwidget.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qtguiglobal.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qglobal.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qconfig.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qtcore-config.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qsysinfo.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qlogging.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qflags.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qatomic.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qmutex.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qnumeric.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qversiontagging.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qtgui-config.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qnamespace.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qobject.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qstring.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qchar.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qbytearray.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qrefcount.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qarraydata.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qstringliteral.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qstringview.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qlist.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qalgorithms.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qiterator.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qpair.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qvector.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qcontainertools_impl.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qpoint.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qstringlist.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qregexp.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qcoreevent.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qmetatype.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qobject_impl.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qmargins.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qrect.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qsize.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qpalette.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qcolor.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qrgb.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qrgba64.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qbrush.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qmatrix.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qpolygon.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qregion.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qdatastream.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qiodevice.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qline.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qtransform.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qpainterpath.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qimage.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qpixelformat.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qpixmap.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qshareddata.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qhash.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qfont.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qfontinfo.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qcursor.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qkeysequence.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qevent.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qvariant.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qmap.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qdebug.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qtextstream.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qlocale.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qset.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qurl.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qurlquery.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qfile.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qfiledevice.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qvector2d.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qtouchdevice.h \
+		.moc/moc_predefs.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/bin/moc
+	/home/paule32/Projects/Qt/5.14.2/gcc_64/bin/moc $(DEFINES) --include /home/paule32/Projects/qttest/DataTools/datatools/src/design_time/tools/buttons/paypal/.moc/moc_predefs.h -I/home/paule32/Projects/Qt/5.14.2/gcc_64/mkspecs/linux-g++ -I/home/paule32/Projects/qttest/DataTools/datatools/src/design_time/tools/buttons/paypal -I/home/paule32/Projects/qttest/DataTools/datatools/src/design_time/tools/buttons/paypal/.uic -I/home/paule32/Projects/qttest/DataTools/datatools/src/design_time/tools/buttons/paypal -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtDesigner -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtUiPlugin -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtWidgets -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtXml -I/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mypaypalbuttonwidget.h -o .moc/moc_mypaypalbuttonwidget.cpp
 
 .moc/moc_mypaypalcollection.cpp: mypaypalcollection.h \
 		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/QList \
@@ -2976,6 +3091,113 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qinputmethod.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/mypaypalbuttonwizard.o mypaypalbuttonwizard.cpp
 
+.obj/mypaypalbuttonwidget.o: mypaypalbuttonwidget.cpp mypaypalbuttonwidget.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtWidgets/QWidget \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtWidgets/qwidget.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qtguiglobal.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qglobal.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qconfig.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qtcore-config.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qsysinfo.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qlogging.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qflags.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qatomic.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qmutex.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qnumeric.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qversiontagging.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qtgui-config.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qnamespace.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qobject.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qstring.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qchar.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qbytearray.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qrefcount.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qarraydata.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qstringliteral.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qstringview.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qlist.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qalgorithms.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qiterator.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qpair.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qvector.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qcontainertools_impl.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qpoint.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qstringlist.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qregexp.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qcoreevent.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qmetatype.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qobject_impl.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qmargins.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qrect.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qsize.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qpalette.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qcolor.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qrgb.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qrgba64.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qbrush.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qmatrix.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qpolygon.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qregion.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qdatastream.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qiodevice.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qline.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qtransform.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qpainterpath.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qimage.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qpixelformat.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qpixmap.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qshareddata.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qhash.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qfont.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qfontinfo.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qcursor.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qkeysequence.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qevent.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qvariant.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qmap.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qdebug.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qtextstream.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qlocale.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qset.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qurl.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qurlquery.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qfile.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtCore/qfiledevice.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qvector2d.h \
+		/home/paule32/Projects/Qt/5.14.2/gcc_64/include/QtGui/qtouchdevice.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/mypaypalbuttonwidget.o mypaypalbuttonwidget.cpp
+
 .obj/qrc_icons.o: .res/qrc_icons.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/qrc_icons.o .res/qrc_icons.cpp
 
@@ -2990,6 +3212,9 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 
 .obj/moc_mypaypalbuttonwizard.o: .moc/moc_mypaypalbuttonwizard.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/moc_mypaypalbuttonwizard.o .moc/moc_mypaypalbuttonwizard.cpp
+
+.obj/moc_mypaypalbuttonwidget.o: .moc/moc_mypaypalbuttonwidget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/moc_mypaypalbuttonwidget.o .moc/moc_mypaypalbuttonwidget.cpp
 
 .obj/moc_mypaypalcollection.o: .moc/moc_mypaypalcollection.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/moc_mypaypalcollection.o .moc/moc_mypaypalcollection.cpp
