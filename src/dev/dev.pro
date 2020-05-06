@@ -22,10 +22,10 @@
 # SOFTWARE.
 # ------------------------------------------------------------------------------
 TEMPLATE = subdirs
-SUBDIRS  = app dev
+SUBDIRS  = plugin tools
 
 # where to find the sub projects - give the folders
-app.subdir  = app
-dev.subdir  = dev
+plugin.subdir = plugin
+tools.subdir  = tools
 
-app.depends = dev
+plugin.depends = tools
