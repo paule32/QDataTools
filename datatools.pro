@@ -22,11 +22,8 @@
 # SOFTWARE.
 # ------------------------------------------------------------------------------
 TEMPLATE = subdirs
-SUBDIRS  = design_time
+SUBDIRS  = src
 
-# where to find the sub projects - give the folders
-design_time.subdir = design_time
-#run.subdir = run
+src.subdir = src
 
-# what sub project depends on others
-#run.depends = dev
+DESTDIR = .lib

@@ -21,12 +21,39 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 # ------------------------------------------------------------------------------
-TEMPLATE = subdirs
-SUBDIRS  = design_time
+CONFIG   += release
+TARGET    = $$qtLibraryTarget(paule32_VisualEditorCPP)
+TEMPLATE  = lib
 
-# where to find the sub projects - give the folders
-design_time.subdir = design_time
-#run.subdir = run
+QT += widgets
 
-# what sub project depends on others
-#run.depends = dev
+TOPDIR      = $$PWD
+UI_DIR      = $${TOPDIR}/.uic
+MOC_DIR     = $${TOPDIR}/.moc
+OBJECTS_DIR = $${TOPDIR}/.obj
+RCC_DIR     = $${TOPDIR}/.res
+DESTDIR     = $${TOPDIR}/.lib
+
+DEFINES += BUILDTIME=\\\"$$system(date '+%H:%M:%S')\\\"
+DEFINES += BUILDDATE=\\\"$$system(date '+%Y-%m-%d')\\\"
+
+INCLUDEPATH += $${UI_DIR}
+
+target.path  = $$[QT_INSTALL_PLUGINS]/designer
+INSTALLS    += target
+
+FORMS += \
+    $$PWD/mycodeeditor.ui \
+    $$PWD/keywordspopup.ui
+
+HEADERS += \
+    $$PWD/keywordspopup.h \
+    $$PWD/mycodeeditor.h \
+    $$PWD/mycodeeditorgutter.h \
+    $$PWD/mycodeeditorhighlighter.h
+
+SOURCES += \
+    $$PWD/keywordspopup.cpp \
+    $$PWD/mycodeeditor.cpp \
+    $$PWD/mycodeeditorgutter.cpp \
+    $$PWD/mycodeeditorhighlighter.cpp

@@ -22,10 +22,10 @@
 # SOFTWARE.
 # ------------------------------------------------------------------------------
 TEMPLATE = subdirs
-SUBDIRS  = design_time
+SUBDIRS  = tools
 
 # where to find the sub projects - give the folders
-design_time.subdir = design_time
+tools.subdir = tools
 #run.subdir = run
 
 # what sub project depends on others

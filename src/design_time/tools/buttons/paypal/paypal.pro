@@ -21,12 +21,49 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 # ------------------------------------------------------------------------------
-TEMPLATE = subdirs
-SUBDIRS  = design_time
+CONFIG     += plugin release
+TARGET      = $$qtLibraryTarget(paule32_ButtonPayPal)
+TEMPLATE    = lib
 
-# where to find the sub projects - give the folders
-design_time.subdir = design_time
-#run.subdir = run
+QT += designer widgets
 
-# what sub project depends on others
-#run.depends = dev
+RESOURCES  += $$PWD/icons.qrc
+LIBS       += -L.
+
+TOPDIR      = $$PWD
+UI_DIR      = $${TOPDIR}/.uic
+MOC_DIR     = $${TOPDIR}/.moc
+OBJECTS_DIR = $${TOPDIR}/.obj
+RCC_DIR     = $${TOPDIR}/.res
+DESTDIR     = $${TOPDIR}/.lib
+
+DEFINES += BUILDTIME=\\\"$$system(date '+%H:%M:%S')\\\"
+DEFINES += BUILDDATE=\\\"$$system(date '+%Y-%m-%d')\\\"
+
+target.path  = $$[QT_INSTALL_PLUGINS]/designer
+INSTALLS    += target
+
+# include files from other project stuff ...
+INCLUDEPATH += \
+    $${TOPDIR}/.uic \
+    $${TOPDIR}
+
+FORMS += \
+    $$PWD/mypaypalbuttonwizard.ui
+
+HEADERS += \
+    &&PWD/mypaypalbuttoncollection.h \
+    $$PWD/mypaypalbuttonwidget.h \
+    $$PWD/mypaypalbuttondialog.h \
+    $$PWD/mypaypalbuttonplugin.h \
+    $$PWD/mypaypalbuttontaskmenu.h \
+    $$PWD/mypaypalbuttonwizard.h \
+    mypaypalcollection.h
+
+SOURCES += \
+    $$PWD/mypaypalbuttoncollection.cpp \
+    $$PWD/mypaypalbuttonwidget.cpp \
+    $$PWD/mypaypalbuttondialog.cpp \
+    $$PWD/mypaypalbuttonplugin.cpp \
+    $$PWD/mypaypalbuttontaskmenu.cpp \
+    $$PWD/mypaypalbuttonwizard.cpp

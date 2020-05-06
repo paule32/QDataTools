@@ -22,11 +22,8 @@
 # SOFTWARE.
 # ------------------------------------------------------------------------------
 TEMPLATE = subdirs
-SUBDIRS  = design_time
+SUBDIRS  = datatable timer
 
 # where to find the sub projects - give the folders
-design_time.subdir = design_time
-#run.subdir = run
-
-# what sub project depends on others
-#run.depends = dev
+datatable.subdir = datatable
+timer.subdir     = timer

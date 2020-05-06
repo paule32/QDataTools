@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 # MIT License
 #
 # Copyright (c) 2020 Jens Kallup
@@ -20,13 +20,5 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-# ------------------------------------------------------------------------------
-TEMPLATE = subdirs
-SUBDIRS  = design_time
+# --------------------------------------------------------------------------------
 
-# where to find the sub projects - give the folders
-design_time.subdir = design_time
-#run.subdir = run
-
-# what sub project depends on others
-#run.depends = dev

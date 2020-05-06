@@ -21,12 +21,45 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 # ------------------------------------------------------------------------------
-TEMPLATE = subdirs
-SUBDIRS  = design_time
+CONFIG     += plugin release
+TARGET      = $$qtLibraryTarget(paule32_ButtonFaceBook)
+TEMPLATE    = lib
 
-# where to find the sub projects - give the folders
-design_time.subdir = design_time
-#run.subdir = run
+QT += designer widgets
 
-# what sub project depends on others
-#run.depends = dev
+TOPDIR      = $$PWD
+UI_DIR      = $${TOPDIR}/.uic
+MOC_DIR     = $${TOPDIR}/.moc
+OBJECTS_DIR = $${TOPDIR}/.obj
+RCC_DIR     = $${TOPDIR}/.res
+DESTDIR     = $${TOPDIR}/.lib
+
+DEFINES += BUILDTIME=\\\"$$system(date '+%H:%M:%S')\\\"
+DEFINES += BUILDDATE=\\\"$$system(date '+%Y-%m-%d')\\\"
+
+target.path  = $$[QT_INSTALL_PLUGINS]/designer
+INSTALLS    += target
+
+# include files from other project stuff ...
+INCLUDEPATH += \
+    $${TOPDIR}/../../dev \
+    $${TOPDIR}/../../dev/.uic
+
+HEADERS += \
+    $$PWD/myfacebookcollection.h \
+    $$PWD/myfacebookdialog.h \
+    $$PWD/myfacebookplugin.h \
+    $$PWD/myfacebooktaskmenu.h \
+    $$PWD/myfacebookwidget.h \
+    $$PWD/myfacebookwizard.h
+
+SOURCES += \
+    $$PWD/myfacebookcollection.cpp \
+    $$PWD/myfacebookdialog.cpp \
+    $$PWD/myfacebookplugin.cpp \
+    $$PWD/myfacebooktaskmenu.cpp \
+    $$PWD/myfacebookwidget.cpp \
+    $$PWD/myfacebookwizard.cpp
+
+FORMS += \
+    $$PWD/myfacebookwizard.ui

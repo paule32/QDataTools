@@ -22,11 +22,11 @@
 # SOFTWARE.
 # ------------------------------------------------------------------------------
 TEMPLATE = subdirs
-SUBDIRS  = design_time
+SUBDIRS  = plugin tools \
+    ToolCollection/toolcollection.pro
 
 # where to find the sub projects - give the folders
-design_time.subdir = design_time
-#run.subdir = run
+plugin.subdir = plugin
+tools.subdir  = tools
 
-# what sub project depends on others
-#run.depends = dev
+plugin.depends = tools
