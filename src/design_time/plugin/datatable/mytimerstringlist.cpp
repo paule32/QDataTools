@@ -27,12 +27,6 @@
 #include "myspinbox.h"
 #include "mytimerstringlist.h"
 
-MyTimerStringList::MyTimerStringList(QWidget * _parent)
-    : parent(_parent)
-{
-    spin = new MySpinBox(parent);
-}
-
 MyTimerStringList::MyTimerStringList(QVBoxLayout *lay, QString txt)
 {
     spin = new MySpinBox(lay,nullptr,txt);

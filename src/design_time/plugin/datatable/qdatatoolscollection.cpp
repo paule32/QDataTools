@@ -22,6 +22,14 @@
 // SOFTWARE.
 // --------------------------------------------------------------------------------
 #include "qdatatableplugin.h"
+#include "qdatatimerplugin.h"
+#include "qdatacore_editbutton_plugin.h"
+#include "qdatacore_connectbutton_plugin.h"
+
+#include "myemailplugin.h"
+#include "mypaypalbuttonplugin.h"
+#include "myfacebookplugin.h"
+
 #include "qdatasqlqueryplugin.h"
 #include "qdatatoolscollection.h"
 
@@ -29,9 +37,13 @@ QDataToolsCollection::QDataToolsCollection(QObject *parent)
     : QObject(parent)
 {
     m_widgets.append(new QDataTablePlugin(this));
-    //m_widgets.append(new QDataTimerPlugin(this));
-    //m_widgets.append(new QDataSqlQueryPlugin(this));
+    m_widgets.append(new QDataTimerPlugin(this));
+    m_widgets.append(new QDataCore_EditButton_Plugin(this));
+    m_widgets.append(new QDataCore_ConnectButton_Plugin(this));
 
+    m_widgets.append(new MyEmailButtonPlugin(this));
+    m_widgets.append(new MyPayPalButtonPlugin(this));
+    m_widgets.append(new MyFaceBookPlugin(this));
 }
 
 QList<QDesignerCustomWidgetInterface*> QDataToolsCollection::customWidgets() const

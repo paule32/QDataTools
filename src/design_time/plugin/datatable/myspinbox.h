@@ -35,7 +35,6 @@ class MySpinBox : public QWidget
     Q_OBJECT
 public:
     MySpinBox(QVBoxLayout *lay, QWidget * parent = nullptr, QString txt = "Text");
-    MySpinBox(QWidget * parent = nullptr, QString txt = "Text");
 
     uint32_t   getValue() const { return spin_box->value(); }
 

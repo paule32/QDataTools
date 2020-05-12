@@ -1,3 +1,3 @@
-export QTDIR=/home/paule32/Projects/Qt
-export PATH=/home/paule32/Projects/Qt/5.14.2/gcc_64/bin:/home/paule32/Projects/Qt/5.14.2/gcc_64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
-export LD_LIBRARY_PATH=/home/paule32/Projects/Qt/5.14.2/gcc_64/lib:
+export QTDIR=
+export PATH=/5.14.2/gcc_64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+export LD_LIBRARY_PATH=/5.14.2/gcc_64/lib

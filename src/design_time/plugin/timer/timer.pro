@@ -61,7 +61,8 @@ SOURCES += \
     $$PWD/qdatatimerplugin.cpp \
     $$PWD/qdatatimertaskmenu.cpp \
     $$PWD/qdatatimerwizard.cpp \
-    $$PWD/qdatatimercollection.cpp
+    $$PWD/qdatatimercollection.cpp \
+    qdatatimerdialog.cpp
 
 FORMS += \
     $$PWD/qdatatimerwizard.ui

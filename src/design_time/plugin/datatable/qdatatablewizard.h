@@ -54,6 +54,7 @@ private slots:
     void on_cmdButtonDelTable_clicked();
     void on_tableWidget_3_itemDoubleClicked(QTableWidgetItem *item);
     void on_donateButton_clicked();
+    void on_commandLinkButton_7_clicked();
 };
 
 #endif // QDATATABLEWIZARD_H

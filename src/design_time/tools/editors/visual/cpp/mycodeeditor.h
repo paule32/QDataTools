@@ -25,39 +25,49 @@
 #define MYCODEEDITOR_H
 
 #include <QWidget>
+#include <QPlainTextEdit>
 #include <QPaintEvent>
 
-#include "mycodeeditorgutter.h"
 #include "mycodeeditorhighlighter.h"
 
-namespace Ui {
-class MyCodeEditor;
-}
-
-class MyCodeEditor : public QWidget
+class MyCodeEditor: public QPlainTextEdit
 {
     Q_OBJECT
-
 public:
-    explicit MyCodeEditor(QWidget *parent = nullptr);
-    ~MyCodeEditor();
-
-    void linePaintEvent(class QPaintEvent *event);
+    explicit MyCodeEditor  (class QWidget *parent = 0);
+    void linePaintEvent(class QPaintEvent *event) ;
     int  gutterWidth();
     int  lines;
-
-    Ui::MyCodeEditor *ui;
-
+protected:
+    void mousePressEvent(class QMouseEvent  *event) Q_DECL_OVERRIDE;
+    void keyPressEvent  (class QKeyEvent    *event) Q_DECL_OVERRIDE;
+    void resizeEvent    (class QResizeEvent *event) Q_DECL_OVERRIDE;
 public slots:
+    void on_cursorPositionChanged();
     void on_gutterUpdate(int);
     void on_linesUpdate(const QRect &rect, int dy);
-
-private slots:
-    void on_textEdit_cursorPositionChanged();
-
 private:
     class MyCodeEditorHighlighter * highlighter;
     class MyCodeEditorGutter      * gutter;
+public slots:
+//    void on_dockHelpOpen();
+//    void on_parseText();
+//    void ShowContextMenu(const QPoint& pos);
+signals:
+//    void onHelpF1();
+};
+
+class MyCodeEditorGutter : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit MyCodeEditorGutter(class MyCodeEditor *editor);
+protected:
+    void paintEvent(class QPaintEvent *event) {
+        codeEditor->linePaintEvent(event);
+    }
+private:
+    class MyCodeEditor *codeEditor;
 };
 
 #endif // MYCODEEDITOR_H

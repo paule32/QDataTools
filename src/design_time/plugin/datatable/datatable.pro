@@ -28,7 +28,7 @@ TEMPLATE    = lib
 QT += designer widgets
 
 RESOURCES  += $$PWD/icons.qrc
-LIBS       += -L.
+LIBS       += -L$$(QTDIR)/Tools/QtCreator/lib/qtcreator/plugins -lCore -L.
 
 TOPDIR      = $$PWD
 UI_DIR      = $${TOPDIR}/.uic
@@ -49,13 +49,9 @@ INCLUDEPATH += \
 
 # include files from other project stuff ...
 INCLUDEPATH += \
-    $${TOPDIR}/../timer \
-    $${TOPDIR}/../../tools/designer/sql \
-    $${TOPDIR}/../../tools/designer/sql/.uic \
-    $${TOPDIR}/../../tools/editors/visual/cpp \
-    $${TOPDIR}/../../tools/editors/visual/cpp/.uic
-
-include(qdatamisc.pri)
+    /home/paule32/Projects/Qt/5.14.2/gcc_64/Tools/QtCreator/dev/src/libs \
+    /home/paule32/Projects/Qt/5.14.2/gcc_64/Tools/QtCreator/dev/src/plugins \
+    /home/paule32/Projects/Qt/5.14.2/gcc_64/Tools/QtCreator/dev/src/plugins/coreplugin
 
 HEADERS += \
     $$PWD/qdatatable.h \
@@ -63,7 +59,38 @@ HEADERS += \
     $$PWD/qdatatableplugin.h \
     $$PWD/qdatatabletaskmenu.h \
     $$PWD/qdatatablewizard.h \
-    $$PWD/qdatatoolscollection.h
+    $$PWD/qdatatoolscollection.h \
+    $$PWD/qdatatimer.h \
+    $$PWD/qdatatimerdialog.h \
+    $$PWD/qdatatimerplugin.h \
+    $$PWD/qdatatimertaskmenu.h \
+    $$PWD/qdatatimerwizard.h \
+    $$PWD/myspinbox.h \
+    $$PWD/mytimerstringlist.h \
+    $$PWD/keywordspopup.h \
+    $$PWD/mycodeeditor.h \
+    $$PWD/mycodeeditorhighlighter.h \
+    $$PWD/myemaildialog.h \
+    $$PWD/myemailplugin.h \
+    $$PWD/myemailtaskmenu.h \
+    $$PWD/myemailwidget.h \
+    $$PWD/myemailwizard.h \
+    $$PWD/myfacebookdialog.h \
+    $$PWD/myfacebookplugin.h \
+    $$PWD/myfacebooktaskmenu.h \
+    $$PWD/myfacebookwidget.h \
+    $$PWD/myfacebookwizard.h \
+    $$PWD/mypaypalbuttondialog.h \
+    $$PWD/mypaypalbuttonplugin.h \
+    $$PWD/mypaypalbuttontaskmenu.h \
+    $$PWD/mypaypalbuttonwidget.h \
+    $$PWD/mypaypalbuttonwizard.h \
+    qdatacore_connectbutton_dialog.h \
+    qdatacore_connectbutton_plugin.h \
+    qdatacore_connectbutton_taskmenu.h \
+    qdatacore_editbutton_dialog.h \
+    qdatacore_editbutton_plugin.h \
+    qdatacore_editbutton_taskmenu.h
 
 SOURCES += \
     $$PWD/qdatatable.cpp \
@@ -71,10 +98,47 @@ SOURCES += \
     $$PWD/qdatatableplugin.cpp \
     $$PWD/qdatatabletaskmenu.cpp \
     $$PWD/qdatatablewizard.cpp \
-    $$PWD/qdatatoolscollection.cpp
+    $$PWD/qdatatoolscollection.cpp \
+    $$PWD/qdatatimer.cpp \
+    $$PWD/qdatatimerdialog.cpp \
+    $$PWD/qdatatimertaskmenu.cpp \
+    $$PWD/qdatatimerwizard.cpp \
+    $$PWD/myspinbox.cpp \
+    $$PWD/mytimerstringlist.cpp \
+    $$PWD/keywordspopup.cpp \
+    $$PWD/mycodeeditor.cpp \
+    $$PWD/mycodeeditorhighlighter.cpp \
+    $$PWD/qdatatimerplugin.cpp \
+    $$PWD/myemaildialog.cpp \
+    $$PWD/myemailplugin.cpp \
+    $$PWD/myemailtaskmenu.cpp \
+    $$PWD/myemailwidget.cpp \
+    $$PWD/myemailwizard.cpp \
+    $$PWD/myfacebookdialog.cpp \
+    $$PWD/myfacebookplugin.cpp \
+    $$PWD/myfacebooktaskmenu.cpp \
+    $$PWD/myfacebookwidget.cpp \
+    $$PWD/myfacebookwizard.cpp \
+    $$PWD/mypaypalbuttondialog.cpp \
+    $$PWD/mypaypalbuttonplugin.cpp \
+    $$PWD/mypaypalbuttontaskmenu.cpp \
+    $$PWD/mypaypalbuttonwidget.cpp \
+    $$PWD/mypaypalbuttonwizard.cpp \
+    qdatacore_connectbutton_dialog.cpp \
+    qdatacore_connectbutton_plugin.cpp \
+    qdatacore_connectbutton_taskmenu_kopie.cpp \
+    qdatacore_editbutton_dialog.cpp \
+    qdatacore_editbutton_plugin.cpp \
+    qdatacore_editbutton_taskmenu.cpp
 
 FORMS += \
-    $$PWD/qdatatablewizard.ui
+    $$PWD/qdatatablewizard.ui \
+    $$PWD/qdatatimerwizard.ui \
+    $$PWD/keywordspopup.ui \
+    $$PWD/mycodeeditor.ui \
+    $$PWD/myfacebookwizard.ui \
+    $$PWD/myemailwizard.ui \
+    $$PWD/mypaypalbuttonwizard.ui
 
 FORMS += \
     qdatasqlwintemp.ui

@@ -28,10 +28,9 @@
 
 #include "mycodeeditor.h"
 #include "mycodeeditorhighlighter.h"
-#include "ui_mycodeeditor.h"
 
 MyCodeEditorHighlighter::MyCodeEditorHighlighter(MyCodeEditor *parent)
-    : QSyntaxHighlighter(parent->ui->textEdit->document())
+    : QSyntaxHighlighter(parent->document())
 {
     cppCommentFormat.setForeground(Qt::red);
     cppCommentFormat.setFontWeight(QFont::Bold);

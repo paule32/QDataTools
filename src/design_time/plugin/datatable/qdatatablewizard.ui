@@ -94,6 +94,16 @@ p, li { white-space: pre-wrap; }
       </size>
      </property>
     </widget>
+    <widget class="QDataCore_EditButton" name="dataCore_EditButton">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>110</y>
+       <width>100</width>
+       <height>30</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="widget_6" native="true">
     <property name="geometry">
@@ -611,7 +621,7 @@ border:0px;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QDataTimer" name="dataTimer" native="true">
+    <widget class="QDataTimer" name="dataTimer">
      <property name="geometry">
       <rect>
        <x>340</x>
@@ -2309,9 +2319,14 @@ background-color: rgba(238, 238, 236,0);</string>
    <header>qdatatimer.h</header>
   </customwidget>
   <customwidget>
+   <class>QDataCore_EditButton</class>
+   <extends>QWidget</extends>
+   <header>qdatacore_editbutton_dialog.h</header>
+  </customwidget>
+  <customwidget>
    <class>MySqlBuilder</class>
    <extends>QWidget</extends>
-   <header location="global">mysqlbuilder.h</header>
+   <header>mysqlbuilder.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -43,17 +43,14 @@ target.path  = $$[QT_INSTALL_PLUGINS]/designer
 INSTALLS    += target
 
 FORMS += \
-    $$PWD/mycodeeditor.ui \
     $$PWD/keywordspopup.ui
 
 HEADERS += \
     $$PWD/keywordspopup.h \
     $$PWD/mycodeeditor.h \
-    $$PWD/mycodeeditorgutter.h \
     $$PWD/mycodeeditorhighlighter.h
 
 SOURCES += \
     $$PWD/keywordspopup.cpp \
     $$PWD/mycodeeditor.cpp \
-    $$PWD/mycodeeditorgutter.cpp \
     $$PWD/mycodeeditorhighlighter.cpp

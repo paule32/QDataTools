@@ -22,11 +22,8 @@
 # SOFTWARE.
 # ------------------------------------------------------------------------------
 TEMPLATE = subdirs
-SUBDIRS  = plugin tools \
-    ToolCollection/toolcollection.pro
+SUBDIRS  = plugin
 
 # where to find the sub projects - give the folders
 plugin.subdir = plugin
-tools.subdir  = tools
 
-plugin.depends = tools

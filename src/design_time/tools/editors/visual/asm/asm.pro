@@ -32,6 +32,7 @@ UI_DIR      = $${TOPDIR}/.uic
 MOC_DIR     = $${TOPDIR}/.moc
 OBJECTS_DIR = $${TOPDIR}/.obj
 RCC_DIR     = $${TOPDIR}/.res
+DESTDIR     = $${TOPDIR}/.lib
 
 DEFINES += BUILDTIME=\\\"$$system(date '+%H:%M:%S')\\\"
 DEFINES += BUILDDATE=\\\"$$system(date '+%Y-%m-%d')\\\"

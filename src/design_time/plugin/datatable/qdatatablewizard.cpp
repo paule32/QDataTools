@@ -24,6 +24,14 @@
 #include "qdatatablewizard.h"
 #include "ui_qdatatablewizard.h"
 
+#include <QtDesigner/QDesignerFormWindowManagerInterface>
+#include <QtDesigner/QDesignerFormEditorInterface>
+#include <QtDesigner/QExtensionManager>
+#include <QtPlugin>
+
+#include <coreplugin/editormanager/editormanager.h>
+#include <coreplugin/editormanager/ieditor.h>
+
 #include <QObject>
 #include <QLabel>
 
@@ -41,9 +49,10 @@ QDataTableWizard::QDataTableWizard(QWidget *parent) :
     ui(new Ui::QDataTableWizard)
 {
     ui->setupUi(this);
+    /*
     ui->progressBar->setVisible(false);
     ui->dataLabel  ->setVisible(false);
-    ui->dataTimer  ->setVisible(false);
+    ui->dataTimer  ->setVisible(false);*/
 }
 
 QDataTableWizard::~QDataTableWizard()
@@ -101,4 +110,22 @@ void QDataTableWizard::on_donateButton_clicked()
 {
     QUrl _url(QLatin1String("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=AJTNQK38VKWFW&source=url"));
     QDesktopServices::openUrl(_url);
+}
+
+extern QDesignerFormEditorInterface * my_formEditor;
+
+void QDataTableWizard::on_commandLinkButton_7_clicked()
+{
+#if 0
+    QDesignerFormWindowManagerInterface *manager = 0;
+    QDesignerFormWindowInterface *formWindow = 0;
+
+    manager = my_formEditor->formWindowManager();
+    formWindow = manager->formWindow(0);
+#endif
+
+    Core::EditorManager::openEditorAt(
+    QString("/etc/hosts"),1,1,
+    "JostEditor",
+    Core::EditorManager::OpenInOtherSplit);
 }

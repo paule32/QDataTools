@@ -21,28 +21,52 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 // --------------------------------------------------------------------------------
-#ifndef MYCODEEDITORGUTTER_H
-#define MYCODEEDITORGUTTER_H
+#include "qdatacore_editbutton.h"
 
-#include <QObject>
-#include <QWidget>
-#include <QPlainTextEdit>
+#include <QTableWidget>
 
-#include "mycodeeditor.h"
-#include "ui_mycodeeditor.h"
+#include <QMouseEvent>
+#include <QPainter>
+#include <QMessageBox>
+#include <QVBoxLayout>
+#include <QCommandLinkButton>
 
-class MyCodeEditor;
-class MyCodeEditorGutter : public QWidget
+QDataCore_EditButton::QDataCore_EditButton(QWidget *parent)
+    : QWidget(parent)
 {
-    Q_OBJECT
-public:
-    explicit MyCodeEditorGutter(MyCodeEditor *editor);
-protected:
-    void paintEvent(class QPaintEvent *event) Q_DECL_OVERRIDE;
-        //codeEditor->linePaintEvent(event);
-    //}
-private:
-    MyCodeEditor *codeEditor;
-};
+    _widget = new QCommandLinkButton(this);
+    _widget->move(0,0);
+    _widget->resize(100,50);
+    _widget->setText("Cmd");
+    _widget->show();
+}
 
-#endif // MYCODEEDITORGUTTER_H
+QSize QDataCore_EditButton::minimumSizeHint() const { return QSize(width(),height()); }
+QSize QDataCore_EditButton::sizeHint()        const { return QSize(width(),height()); }
+
+void QDataCore_EditButton::resizeEvent(QResizeEvent *event) {
+    Q_UNUSED(event)
+    _widget->resize(width(),height());
+}
+
+void QDataCore_EditButton::setState(const QString &newState)
+{
+    Q_UNUSED(newState)
+    update();
+}
+
+QString QDataCore_EditButton::state() const
+{
+    return QString("myState");
+}
+
+void QDataCore_EditButton::mousePressEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event)
+    update();
+}
+
+void QDataCore_EditButton::paintEvent(QPaintEvent * event)
+{
+    QWidget::paintEvent(event);
+}

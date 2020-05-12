@@ -22,8 +22,7 @@
 # SOFTWARE.
 # ------------------------------------------------------------------------------
 TEMPLATE = subdirs
-SUBDIRS  = datatable timer
+SUBDIRS  = datatable
 
 # where to find the sub projects - give the folders
 datatable.subdir = datatable
-timer.subdir     = timer

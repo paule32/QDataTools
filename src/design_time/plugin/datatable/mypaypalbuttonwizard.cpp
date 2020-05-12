@@ -21,14 +21,28 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 // --------------------------------------------------------------------------------
-#include "mycodeeditorgutter.h"
+#include <QObject>
+#include <QLabel>
 
-MyCodeEditorGutter::MyCodeEditorGutter(class MyCodeEditor *editor)
-    : QWidget(editor) {
-    codeEditor = editor;
+#include <QListWidget>
+#include <QListWidgetItem>
+
+#include <QTableWidget>
+#include <QTableWidgetItem>
+
+#include <QDesktopServices>
+#include <QMessageBox>
+
+#include "mypaypalbuttonwizard.h"
+
+MyPayPalButtonWizard::MyPayPalButtonWizard(QWidget *parent) :
+    QWizard(parent),
+    ui(new Ui::MyPayPalButtonWizard)
+{
+    ui->setupUi(this);
 }
 
-void MyCodeEditorGutter::paintEvent(QPaintEvent *event)
+MyPayPalButtonWizard::~MyPayPalButtonWizard()
 {
-
+    delete ui;
 }

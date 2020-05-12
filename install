@@ -5,37 +5,105 @@
 #
 tmp_file=$(tempfile 2>/dev/null) || tmp_file=/tmp/test$$
 trap "rm -f $tmp_file" 0 1 2 5 15
+version="0.0.1"
+header="DataTools $version (c) 2020 Jens Kallup - paule32"
 
-dialog \
-  --backtitle "DataTools 0.0.1 (c) Jens Kallup - paule32" \
-  --title " Install path from Qt-5 " \
-  --clear  \
-  --inputbox \
-"Hi, this is an input dialog box. You can use \n
-it to ask for the installation path of QT5 \n
-from the developer/user. \n
-Please make sure, you have download Qt5 source\n
-plus the Qt Creator 4.12.0. \n \n \n" 16 51 $QTDIR 2> $tmp_file
+# get locales ...
+locale 2>&1 > $tmp_file
+lang=$(cat $tmp_file | grep "de_DE")
+if ((${#lang}>2));then
+  lang="de"; else
+  lang="en"
+fi
+
+# check, if "dialog" is installed ...
+wdlg=$(which dialog)
+if((${#wdlg}<2));then
+  if [ $lang == "en" ]; then
+    echo "This program requiers the \"dialog\" application."
+    echo "You can install it with:"
+  else
+    echo "Dieses Programm erfordert die \"dialog\" Anwendung."
+    echo "Installieren können Sie diese mit:"
+  fi
+  echo ""
+  if echo "$(uname -a)" | grep -q "Ubuntu";then
+    echo "sudo apt install dialog"
+  else
+    echo "pacman dialog"
+  fi
+  exit
+fi
+
+# g/set pre-env. varíables
+source rc.local
+
+if [ $lang == "en" ]; then
+  dialog \
+  --backtitle "$header" \
+  --title " Download Qt5.14.2 - QtC4.12.0 " --clear --msgbox \
+  "\n
+Hello, would you download the Qt5.14.2 Framework ?\n
+With this framework, you can programming application's \n
+in a fast way.\n
+\n
+\n \n" 16 51
+else
+  dialog \
+  --backtitle "$header" \
+  --title " Download Qt5.14.2 - QtC4.12.0 " --clear --yesno \
+  "\n
+Hallo, möchten Sie das Qt5.14.2 Framework downloaden ?\n
+Mit diesem Framework können Sie schnell Anwendungen programmieren
+\n \n" 16 51
+fi
+answer=$?
+if [ $answer eq 0 ]; then
+  wget http://www.kallup.net/tmp/qt5.14.2.tar.gz
+fi
+
+if [ $lang == "en" ]; then
+  dialog \
+  --backtitle "$header" \
+  --title " Setup installation path " --clear --inputbox \
+  "\n
+Please type in the installation path for Qt." 16 51 "$QTDIR" 2> $tmp_file
+else
+  dialog \
+  --backtitle "$header" \
+  --title " Setup installation path " --clear --inputbox \
+  "\n
+Bitte geben Sie nun den Installations-Pfad ein..." 16 51 "$QTDIR" 2> $tmp_file
+fi
 
 tmp_str=$(cat $tmp_file)
-
 echo "export QTDIR=$tmp_str" > rc.local
-echo "export PATH=$tmp_str/5.14.2/gcc_64/bin:$PATH" >> rc.local
-echo "export LD_LIBRARY_PATH=$tmp_str/5.14.2/gcc_64/lib:$LD_LIBRARY_PATH" >> rc.local
+echo "export PATH=$tmp_str/5.14.2/gcc_64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games" >> rc.local
+echo "export LD_LIBRARY_PATH=$tmp_str/5.14.2/gcc_64/lib" >> rc.local
 
 dialog \
-  --backtitle "DataTools 0.0.1 (c) Jens Kallup - paule32" \
-  --title " ATTENTION " \
+--backtitle
+del_files=Makefile,Makefile.toolcollection,.lib,.uic,.moc,.obj,.res,*.autosave
+for val in ${del_files//,/ }; do
+find ./ -name $val | {
+  while IFS= read -r line; do
+    rm -rf "$line"
+  done
+} done
+dialog \
+  --backtitle "$header" \
+  --title " --> ATTENTION <--" \
   --yesno "rc.local file was created. Would you use the collected \n
 settings, and try to compile the DataTool package ?" 10 45
 answer=$?
 clear
 if [ $answer = 0 ]; then
-source rc.local
-qmake
-make
-make install
+  source rc.local
+  qmake
+  make clean
+  make
+  make install
 else
-echo "nothing to do, back on shell."
+  echo "nothing to do, back on shell."
 fi
 echo "Have a nice day."

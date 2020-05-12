@@ -30,6 +30,8 @@
 #include <QtPlugin>
 #include <QVBoxLayout>
 
+//QDesignerFormEditorInterface * my_formEditor;
+
 QDataTablePlugin::QDataTablePlugin(QObject *parent)
     : QObject(parent)
 {
@@ -45,6 +47,8 @@ void QDataTablePlugin::initialize(QDesignerFormEditorInterface * formEditor)
 
     QExtensionManager *manager = formEditor->extensionManager();
     Q_ASSERT(manager != 0);
+
+    //my_formEditor = formEditor;
 
     manager->registerExtensions(
     new QDataTableTaskMenuFactory(manager),
