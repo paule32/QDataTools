@@ -29,12 +29,68 @@ linux:SUPPORT = $$system(uname -s) # ...
 isEmpty(QTDIR): QTDIR = $$system(echo $QTDIR)
 isEmpty(QTDIR): error("The Compilation for this Project need the QTDIR path.")
 
-TEMPLATE = subdirs
-SUBDIRS  = plugins
+DEFINES    += LINUXSSLTOOL_LIBRARY
 
-# where to find the sub projects - give the folders
-plugins.subdir = plugins
-#run.subdir = run
+CONFIG     += qtplugin release
+TARGET      = $$qtLibraryTarget(paule32_LinuxSSLTool)
+TEMPLATE    = lib
 
-# what sub project depends on others
-#run.depends = dev
+QT += designer widgets
+
+RESOURCES  += $$PWD/icons.qrc
+LIBS       += -L$$(QTDIR)/Tools/QtCreator/lib/qtcreator/plugins -lCore -L.
+
+TOPDIR      = $$PWD
+UI_DIR      = $${TOPDIR}/.uic
+MOC_DIR     = $${TOPDIR}/.moc
+OBJECTS_DIR = $${TOPDIR}/.obj
+RCC_DIR     = $${TOPDIR}/.res
+
+DESTDIR     = $$(QTDIR)/Tools/QtCreator/lib/Qt/plugins/designer
+
+DEFINES += BUILDTIME=\\\"$$system(date '+%H:%M:%S')\\\"
+DEFINES += BUILDDATE=\\\"$$system(date '+%Y-%m-%d')\\\"
+
+target.path  = $$[QT_INSTALL_PLUGINS]/designer
+INSTALLS    += target
+
+INCLUDEPATH += \
+    $${UI_DIR} \
+    $${UI_DIR}/..
+
+SOURCES += \
+    $$PWD/ssltool.cpp \
+    $$PWD/ssltool_widget.cpp \
+    $$PWD/myssltoolmode.cpp
+
+HEADERS += \
+    $$PWD/ssltool.h \
+    $$PWD/ssltool_global.h \
+    $$PWD/ssltool_constants.h \
+    $$PWD/ssltool_widget.h \
+    $$PWD/myssltoolmode.h
+
+DISTFILES += \
+    $$PWD/ssltool.json \
+    $$PWD/ssltool.json.in
+
+FORMS += \
+    $$PWD/myssltoolmode.ui
+
+isEmpty(IDE_SOURCE_TREE): IDE_SOURCE_TREE = $$(QTC_SOURCE)
+isEmpty(IDE_SOURCE_TREE): IDE_SOURCE_TREE = $$system(echo $QTDIR)/Tools/QtCreator/dev
+
+isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = $$(QTC_BUILD)
+isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = $$system(echo $QTDIR)/Tools/QtCreator
+
+QTC_PLUGIN_NAME = paule32_LinuxSSLTool
+QTC_LIB_DEPENDS += \
+    extensionsystem
+
+QTC_PLUGIN_DEPENDS += \
+    coreplugin
+
+QTC_PLUGIN_RECOMMENDS += \
+    # optional plugin dependencies. nothing here at this time
+
+include($$IDE_SOURCE_TREE/src/qtcreatorplugin.pri)

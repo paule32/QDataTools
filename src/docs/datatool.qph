@@ -1,0 +1,43 @@
+<!DOCTYPE QPH>
+<QPH sourcelanguage="en_US" language="de_DE">
+<phrase>
+    <source>Warning</source>
+    <target>Warnung</target>
+</phrase>
+<phrase>
+    <source>Error</source>
+    <target>Fehler</target>
+</phrase>
+<phrase>
+    <source>Operation aborted</source>
+    <target>Operation abgebrochen</target>
+</phrase>
+<phrase>
+    <source>Open</source>
+    <target>Öffnen</target>
+</phrase>
+<phrase>
+    <source>Close</source>
+    <target>Schließen</target>
+</phrase>
+<phrase>
+    <source>Abort</source>
+    <target>Abbrechen</target>
+</phrase>
+<phrase>
+    <source>Domain Field is not filled in</source>
+    <target>Umgebungs-Feld ist nicht ausgefüllt</target>
+</phrase>
+<phrase>
+    <source>Properties</source>
+    <target>Eigenschaften</target>
+</phrase>
+<phrase>
+    <source>(Neuer Eintrag)</source>
+    <target></target>
+</phrase>
+<phrase>
+    <source>Properties...</source>
+    <target>Eigenschaften...</target>
+</phrase>
+</QPH>

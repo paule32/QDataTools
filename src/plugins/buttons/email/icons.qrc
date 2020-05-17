@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/icon-mail24.png</file>
+        <file>img/icon-mail32.png</file>
+        <file>img/icon-mail48.png</file>
+    </qresource>
+</RCC>

@@ -30,11 +30,4 @@ isEmpty(QTDIR): QTDIR = $$system(echo $QTDIR)
 isEmpty(QTDIR): error("The Compilation for this Project need the QTDIR path.")
 
 TEMPLATE = subdirs
-SUBDIRS  = plugins
-
-# where to find the sub projects - give the folders
-plugins.subdir = plugins
-#run.subdir = run
-
-# what sub project depends on others
-#run.depends = dev
+SUBDIRS  = sys gui

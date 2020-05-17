@@ -21,9 +21,16 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 # ------------------------------------------------------------------------------
+win32:SUPPORT = no      # we don't support windows 32-Bit
+win64:SUPPORT = no      # we don't support windows 64-Bit
+linux:SUPPORT = $$system(uname -s) # ...
+!contains(SUPPORT,[lL]inux): error("We only support Linux version of this Project")
+#
+isEmpty(QTDIR): QTDIR = $$system(echo $QTDIR)
+isEmpty(QTDIR): error("The Compilation for this Project need the QTDIR path.")
+
 TEMPLATE = subdirs
 SUBDIRS  = src
 
 src.subdir = src
 
-DESTDIR = .lib

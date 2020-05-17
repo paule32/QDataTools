@@ -29,12 +29,59 @@ linux:SUPPORT = $$system(uname -s) # ...
 isEmpty(QTDIR): QTDIR = $$system(echo $QTDIR)
 isEmpty(QTDIR): error("The Compilation for this Project need the QTDIR path.")
 
-TEMPLATE = subdirs
-SUBDIRS  = plugins
+CONFIG     += plugin release
+TARGET      = $$qtLibraryTarget(paule32_DBTable)
+TEMPLATE    = lib
 
-# where to find the sub projects - give the folders
-plugins.subdir = plugins
-#run.subdir = run
+QT += designer widgets
 
-# what sub project depends on others
-#run.depends = dev
+RESOURCES  += $$PWD/icons.qrc
+LIBS       += -L$$(QTDIR)/Tools/QtCreator/lib/Qt/plugins/designer
+LIBS       += -L$$(QTDTR)/Tools/QtCreator/lib/qtcreator \
+              -L$$(QTDIR)/Tools/QtCreator/lib/qtcreator/plugins -lCore
+
+TOPDIR      = $$PWD
+UI_DIR      = $${TOPDIR}/.uic
+MOC_DIR     = $${TOPDIR}/.moc
+OBJECTS_DIR = $${TOPDIR}/.obj
+RCC_DIR     = $${TOPDIR}/.res
+
+DESTDIR     = $$(QTDIR)/Tools/QtCreator/lib/Qt/plugins/designer
+
+DEFINES += BUILDTIME=\\\"$$system(date '+%H:%M:%S')\\\"
+DEFINES += BUILDDATE=\\\"$$system(date '+%Y-%m-%d')\\\"
+
+target.path  = $$[QT_INSTALL_PLUGINS]/designer
+INSTALLS    += target
+
+INCLUDEPATH += \
+    $$(QTDIR)/Tools/QtCreator/src/libs \
+    $$(QTDIR)/Tools/QtCreator/src/libs/utils \
+    $$(QTDIR)/Tools/QtCreator/src/plugins \
+    $$(QTDIR)/Tools/QtCreator/src/plugins/actionmanager \
+    $$(QTDIR)/Tools/QtCreator/src/plugins/editormanager \
+    $${UI_DIR} \
+    $${UI_DIR}/.. \
+    $$PWD/../db_connect \
+    $$PWD/../db_edit \
+    $$PWD/../../../timer
+
+HEADERS += \
+    $$PWD/qdatatable.h \
+    $$PWD/qdatatabledialog.h \
+    $$PWD/qdatatableplugin.h \
+    $$PWD/qdatatabletaskmenu.h \
+    $$PWD/qdatatablewizard.h \
+    $$PWD/qdatatable_collection.h
+
+SOURCES += \
+    $$PWD/qdatatable.cpp \
+    $$PWD/qdatatabledialog.cpp \
+    $$PWD/qdatatableplugin.cpp \
+    $$PWD/qdatatabletaskmenu.cpp \
+    $$PWD/qdatatablewizard.cpp \
+    $$PWD/qdatatable_collection.cpp
+
+FORMS += \
+    $$PWD/qdatatablewizard.ui
+

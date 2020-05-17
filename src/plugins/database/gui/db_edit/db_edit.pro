@@ -29,12 +29,43 @@ linux:SUPPORT = $$system(uname -s) # ...
 isEmpty(QTDIR): QTDIR = $$system(echo $QTDIR)
 isEmpty(QTDIR): error("The Compilation for this Project need the QTDIR path.")
 
-TEMPLATE = subdirs
-SUBDIRS  = plugins
+CONFIG     += plugin release
+TARGET      = $$qtLibraryTarget(paule32_DBEdit)
+TEMPLATE    = lib
 
-# where to find the sub projects - give the folders
-plugins.subdir = plugins
-#run.subdir = run
+QT += designer widgets
 
-# what sub project depends on others
-#run.depends = dev
+RESOURCES  += #$$PWD/icons.qrc
+LIBS       += #-L$$(QTDIR)/Tools/QtCreator/lib/Qt/plugins/designer
+
+TOPDIR      = $$PWD
+UI_DIR      = $${TOPDIR}/.uic
+MOC_DIR     = $${TOPDIR}/.moc
+OBJECTS_DIR = $${TOPDIR}/.obj
+RCC_DIR     = $${TOPDIR}/.res
+
+DESTDIR     = $$(QTDIR)/Tools/QtCreator/lib/Qt/plugins/designer
+
+DEFINES += BUILDTIME=\\\"$$system(date '+%H:%M:%S')\\\"
+DEFINES += BUILDDATE=\\\"$$system(date '+%Y-%m-%d')\\\"
+
+target.path  = $$[QT_INSTALL_PLUGINS]/designer
+INSTALLS    += target
+
+INCLUDEPATH += \
+    $$PWD/.uic \
+    $$PWD
+
+HEADERS += \
+    $$PWD/qdatacore_editbutton_collection.h \
+    $$PWD/qdatacore_editbutton_dialog.h \
+    $$PWD/qdatacore_editbutton_plugin.h \
+    $$PWD/qdatacore_editbutton_taskmenu.h
+
+SOURCES += \
+    $$PWD/qdatacore_editbutton_collection.cpp \
+    $$PWD/qdatacore_editbutton_dialog.cpp \
+    $$PWD/qdatacore_editbutton_plugin.cpp \
+    $$PWD/qdatacore_editbutton_taskmenu.cpp
+
+FORMS +=

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/icon-facebook24.png</file>
+        <file>img/icon-facebook48.png</file>
+    </qresource>
+</RCC>

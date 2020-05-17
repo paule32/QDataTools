@@ -29,12 +29,37 @@ linux:SUPPORT = $$system(uname -s) # ...
 isEmpty(QTDIR): QTDIR = $$system(echo $QTDIR)
 isEmpty(QTDIR): error("The Compilation for this Project need the QTDIR path.")
 
-TEMPLATE = subdirs
-SUBDIRS  = plugins
+CONFIG     += plugin release
+TARGET      = $$qtLibraryTarget(paule32_DataBase)
+TEMPLATE    = lib
 
-# where to find the sub projects - give the folders
-plugins.subdir = plugins
-#run.subdir = run
+QT += designer widgets
 
-# what sub project depends on others
-#run.depends = dev
+RESOURCES  += #$$PWD/icons.qrc
+LIBS       += #-L$$(QTDIR)/Tools/QtCreator/lib/qtcreator/plugins -lCore -L.
+
+TOPDIR      = $$PWD
+UI_DIR      = $${TOPDIR}/.uic
+MOC_DIR     = $${TOPDIR}/.moc
+OBJECTS_DIR = $${TOPDIR}/.obj
+RCC_DIR     = $${TOPDIR}/.res
+
+DESTDIR     = $$(QTDIR)/Tools/QtCreator/lib/Qt/plugins/designer
+
+DEFINES += BUILDTIME=\\\"$$system(date '+%H:%M:%S')\\\"
+DEFINES += BUILDDATE=\\\"$$system(date '+%Y-%m-%d')\\\"
+
+target.path  = $$[QT_INSTALL_PLUGINS]/designer
+INSTALLS    += target
+
+INCLUDEPATH += \
+    $${UI_DIR} \
+    $${UI_DIR}/..
+
+HEADERS += \
+    mydatabase.h \
+    mydatabase_factory.h
+
+SOURCES += \
+    mydatabase_factory.cpp \
+    mydatabase_session.cpp
