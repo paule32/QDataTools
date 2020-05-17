@@ -41,7 +41,7 @@ MyPayPalButtonWizard::MyPayPalButtonWizard(QWidget *parent) :
     ui(new Ui::MyPayPalButtonWizard)
 {
     ui->setupUi(this);
-    my_palwizui = ui;
+    //my_palwizui = ui;
 }
 
 MyPayPalButtonWizard::~MyPayPalButtonWizard()
@@ -51,6 +51,6 @@ MyPayPalButtonWizard::~MyPayPalButtonWizard()
 
 void MyPayPalButtonWizard::on_commandLinkButton_clicked()
 {
-    ui->textEdit->setText(m_paypaldlg->ExternUrl());
+    //ui->textEdit->setText(m_paypaldlg->ExternUrl());
     close();
 }

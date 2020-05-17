@@ -47,5 +47,5 @@ MyEmailDialog::MyEmailDialog(MyEmailButtonWidget *tic, QWidget *parent)
     mainLayout->addWidget(buttonBox);
 
     setLayout(mainLayout);
-    setWindowTitle(QString::tr("Properties..."));
+    setWindowTitle(tr("Properties..."));
 }

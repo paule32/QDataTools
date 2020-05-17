@@ -48,7 +48,7 @@ public:
     ~MyPayPalButtonWizard();
 
     Ui::MyPayPalButtonWizard * ui;
-    MyPayPalButtonDialog     * m_paypaldlg = nullptr;
+    //MyPayPalButtonDialog     * m_paypaldlg = nullptr;
 
 private slots:
     void on_commandLinkButton_clicked();

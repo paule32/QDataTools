@@ -29,7 +29,7 @@ MyPayPalButtonWidget::MyPayPalButtonWidget(QWidget *parent) :
     const QPixmap pix(QPixmap(QLatin1String(":/img/icon-paypal.png")));
 
     _widget = new QPushButton(this);
-    _widget->setPixmap(pix);
-    _widget->setScaledContents(true);
+    //_widget->setPixmap(pix);
+    //_widget->setScaledContents(true);
     _widget->move(0,0);
 }

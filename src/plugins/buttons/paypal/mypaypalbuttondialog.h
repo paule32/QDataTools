@@ -52,7 +52,7 @@ private:
     MyPayPalButtonWidget * editor;
     MyPayPalButtonWidget * dataTable;
 
-    MyPayPalButtonWizard * m_wizard;
+    //MyPayPalButtonWizard * m_wizard;
     QDialogButtonBox * buttonBox;
     QString m_payurl ;
 };
