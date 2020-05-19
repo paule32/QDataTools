@@ -53,6 +53,6 @@ MyPayPalButtonDialog::MyPayPalButtonDialog(
     setLayout(mainLayout);
     setWindowTitle("Properties...");
 
-    //my_palwizui->ui->textEdit = this->ExternUrl();
-    //my_palwizui->m_paypaldlg  = this;
+    my_palwizui->ui->textEdit->setText(ExternUrl());
+    my_palwizui->m_paypaldlg  = this;
 }

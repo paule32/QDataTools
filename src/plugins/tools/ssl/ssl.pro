@@ -35,7 +35,7 @@ CONFIG     += qtplugin release
 TARGET      = $$qtLibraryTarget(paule32_LinuxSSLTool)
 TEMPLATE    = lib
 
-QT += designer widgets
+QT += designer widgets xml
 
 RESOURCES  += $$PWD/icons.qrc
 LIBS       += -L$$(QTDIR)/Tools/QtCreator/lib/qtcreator/plugins -lCore -L.

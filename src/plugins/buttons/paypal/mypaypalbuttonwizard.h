@@ -39,6 +39,7 @@ namespace Ui {
 class MyPayPalButtonWizard;
 }
 
+class MyPayPalButtonDialog ;
 class MyPayPalButtonWizard : public QWizard
 {
     Q_OBJECT
@@ -48,7 +49,7 @@ public:
     ~MyPayPalButtonWizard();
 
     Ui::MyPayPalButtonWizard * ui;
-    //MyPayPalButtonDialog     * m_paypaldlg = nullptr;
+    MyPayPalButtonDialog     * m_paypaldlg = nullptr;
 
 private slots:
     void on_commandLinkButton_clicked();

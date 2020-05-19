@@ -169,9 +169,9 @@ QTabBar::tab:!selected {
                     <property name="geometry">
                      <rect>
                       <x>0</x>
-                      <y>0</y>
-                      <width>275</width>
-                      <height>114</height>
+                      <y>-40</y>
+                      <width>186</width>
+                      <height>154</height>
                      </rect>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -208,7 +208,11 @@ QTabBar::tab:!selected {
                         <item>
                          <layout class="QFormLayout" name="formLayout">
                           <item row="0" column="1">
-                           <widget class="QLineEdit" name="lineEdit"/>
+                           <widget class="QLineEdit" name="pathEdit">
+                            <property name="text">
+                             <string>/tmp</string>
+                            </property>
+                           </widget>
                           </item>
                           <item row="0" column="0">
                            <widget class="QLabel" name="label_7">
@@ -234,7 +238,7 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="2" column="1">
-                           <widget class="QLineEdit" name="lineEdit_3">
+                           <widget class="QLineEdit" name="ownerEdit">
                             <property name="maximumSize">
                              <size>
                               <width>200</width>
@@ -250,6 +254,43 @@ QTabBar::tab:!selected {
                             </property>
                             <property name="text">
                              <string>Owner: </string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="3" column="0">
+                           <widget class="QLabel" name="label_4">
+                            <property name="styleSheet">
+                             <string notr="true">background-color:rgba(0,0,0,0);</string>
+                            </property>
+                            <property name="text">
+                             <string>Days:</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="3" column="1">
+                           <widget class="QLineEdit" name="daysEdit">
+                            <property name="text">
+                             <string>1024</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="4" column="0">
+                           <widget class="QLabel" name="label_5">
+                            <property name="styleSheet">
+                             <string notr="true">background-color:rgba(0,0,0,0);</string>
+                            </property>
+                            <property name="text">
+                             <string>Password:</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="4" column="1">
+                           <widget class="QLineEdit" name="passwordEdit">
+                            <property name="inputMask">
+                             <string/>
+                            </property>
+                            <property name="echoMode">
+                             <enum>QLineEdit::Password</enum>
                             </property>
                            </widget>
                           </item>
@@ -525,7 +566,68 @@ QTreeWidget::branch:open:has-children:has-siblings  {
            </spacer>
           </item>
           <item>
-           <widget class="QPlainTextEdit" name="certEditor"/>
+           <widget class="QScrollArea" name="scrollArea">
+            <property name="minimumSize">
+             <size>
+              <width>180</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>178</width>
+               <height>128</height>
+              </rect>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_8">
+              <item>
+               <widget class="QComboBox" name="comboBox">
+                <property name="styleSheet">
+                 <string notr="true">background-color:white;
+color:black;</string>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>Version: 3</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Version: 2</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Version: 1</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="lineEdit_2"/>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </widget>
           </item>
          </layout>
         </item>
