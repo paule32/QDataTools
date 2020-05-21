@@ -70,12 +70,14 @@ HEADERS += \
     $$PWD/ssltool_widget.h \
     $$PWD/myssltoolmode.h
 
-DISTFILES += \
-    $$PWD/ssltool.json \
-    $$PWD/ssltool.json.in
-
 FORMS += \
     $$PWD/myssltoolmode.ui
+
+DISTFILES += \
+    $$PWD/README.md \
+    $$PWD/screen1.png \
+    $$PWD/ssltool.json \
+    $$PWD/ssltool.json.in
 
 isEmpty(IDE_SOURCE_TREE): IDE_SOURCE_TREE = $$(QTC_SOURCE)
 isEmpty(IDE_SOURCE_TREE): IDE_SOURCE_TREE = $$system(echo $QTDIR)/Tools/QtCreator/dev
