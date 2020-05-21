@@ -25,6 +25,7 @@
 #define MYSSLTOOLMODE_H
 
 #include <QWidget>
+#include <QLineEdit>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 
@@ -42,12 +43,25 @@ public:
     ~MySSLToolMode();
 
     bool write_cert(QString pro_str);
+    void msgbox(QString msg);
+
+    QString openPath();
+    void pathEditTextChanged(const QString &arg1, QLineEdit * pathEdit);
 
 private slots:
-    void on_createCert_clicked();
-    void on_createCA_clicked();
-    void on_certsTree_itemDoubleClicked(QTreeWidgetItem *item, int column);
-    void on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
+    void on_addNewCA_clicked();
+    void on_pathEdit_textChanged(const QString &arg1);
+    void on_openPath1_clicked();
+    void on_openPath2_clicked();
+    void on_openPath3_clicked();
+    void on_openPath4_clicked();
+    void on_openPath5_clicked();
+
+    void on_serverPathEdit_textChanged(const QString &arg1);
+    void on_pcPathEdit_textChanged(const QString &arg1);
+    void on_appPathEdit_textChanged(const QString &arg1);
+
+    void on_humPathEdit_textChanged(const QString &arg1);
 
 private:
     Ui::MySSLToolMode *ui;

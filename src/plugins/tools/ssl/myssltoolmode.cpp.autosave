@@ -236,9 +236,9 @@ void MySSLToolMode::on_addNewCA_clicked()
 
     // sign server cert ...
     if (!dir.exists(QString("%1/%2/server/%3")
-        .arg(ui->pathEdit      ->text().trimmed())
-        .arg(ui->domainEdit    ->text().trimmed())
-        .arg(ui->serverNameEdit->text().trimmed()))) {
+        .arg(ui->pathEdit       ->text().trimmed())
+        .arg(ui->domainEdit     ->text().trimmed())
+        .arg(ui->serverOwnerEdit->text().trimmed()))) {
         if (!dir.mkpath(QString("%1/%2/server/%3")
             .arg(ui->pathEdit       ->text().trimmed())
             .arg(ui->domainEdit     ->text().trimmed())
@@ -264,7 +264,7 @@ void MySSLToolMode::on_addNewCA_clicked()
     QString("openssl req -new -key %1/%2/server/%3/server.key.pem "
             "-passin pass:$4  -out %1/%2/server/%3/server.req.crt "
             "-subj '/C=%5/ST=%6/L=%7/O=%8/OU=%9/CN=%10'")
-            .arg(ui->serverPathEdit    ->text().trimmed())
+            .arg(ui->pathEdit          ->text().trimmed())
             .arg(ui->domainEdit        ->text().trimmed())
             .arg(ui->serverOwnerEdit   ->text().trimmed())
             .arg(ui->serverPasswordEdit->text().trimmed())
