@@ -66,9 +66,11 @@ HEADERS += \
     $$PWD/setuptool_mode.h
 
 FORMS += \
-    setuptool_mode.ui
+    $$PWD/setuptool_mode.ui
 
 DISTFILES += \
+    $$PWD/README.md \
+    $$PWD/screen1.png \
     $$PWD/setuptool.json \
     $$PWD/setuptool.json.in
 
