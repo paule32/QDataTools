@@ -22,6 +22,8 @@
 // SOFTWARE.
 // --------------------------------------------------------------------------------
 #include <cstdio>
+#include <vector>
+
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -43,8 +45,10 @@
 #include "myssltoolmode.h"
 #include "ui_myssltoolmode.h"
 
-static inline QString folderElement   () { return QStringLiteral("folder" ); }
-static inline QString versionAttribute() { return QStringLiteral("version"); }
+namespace LinuxSSLTool {
+namespace Internal {
+
+std::vector<my_ssl_edit_struct> ssl_edit_vector;
 
 MySSLToolMode::MySSLToolMode(QWidget *parent) :
     QWidget(parent),
@@ -52,6 +56,43 @@ MySSLToolMode::MySSLToolMode(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->textBrowser->document()->clear();
+
+    // ca ...
+    ssl_edit_vector.emplace_back(1, ui->pathEdit    , this);
+    ssl_edit_vector.emplace_back(1, ui->domainEdit  , this);
+    ssl_edit_vector.emplace_back(1, ui->ownerEdit   , this);
+    ssl_edit_vector.emplace_back(1, ui->daysEdit    , this);
+    ssl_edit_vector.emplace_back(1, ui->passwordEdit, this);
+
+    // server ...
+    ssl_edit_vector.emplace_back(2, ui->serverPathEdit    , this);
+    ssl_edit_vector.emplace_back(2, ui->serverNameEdit    , this);
+    ssl_edit_vector.emplace_back(2, ui->serverOwnerEdit   , this);
+    ssl_edit_vector.emplace_back(2, ui->serverDaysEdit    , this);
+    ssl_edit_vector.emplace_back(2, ui->serverPasswordEdit, this);
+
+    // workstation ...
+    ssl_edit_vector.emplace_back(3, ui->pcPathEdit    , this);
+    ssl_edit_vector.emplace_back(3, ui->pcNameEdit    , this);
+    ssl_edit_vector.emplace_back(3, ui->pcOwnerEdit   , this);
+    ssl_edit_vector.emplace_back(3, ui->pcDaysEdit    , this);
+    ssl_edit_vector.emplace_back(3, ui->pcPasswordEdit, this);
+
+    // application ...
+    ssl_edit_vector.emplace_back(4, ui->pcPathEdit    , this);
+    ssl_edit_vector.emplace_back(4, ui->pcNameEdit    , this);
+    ssl_edit_vector.emplace_back(4, ui->pcOwnerEdit   , this);
+    ssl_edit_vector.emplace_back(4, ui->pcDaysEdit    , this);
+    ssl_edit_vector.emplace_back(4, ui->pcPasswordEdit, this);
+
+    // person ...
+    ssl_edit_vector.emplace_back(5, ui->pcPathEdit    , this);
+    ssl_edit_vector.emplace_back(5, ui->pcNameEdit    , this);
+    ssl_edit_vector.emplace_back(5, ui->pcOwnerEdit   , this);
+    ssl_edit_vector.emplace_back(5, ui->pcDaysEdit    , this);
+    ssl_edit_vector.emplace_back(5, ui->pcPasswordEdit, this);
+
+    //for (int i = 0; i < )
 
     QString m_path = QString("%1").arg(
         QLibraryInfo::location(
@@ -92,6 +133,11 @@ MySSLToolMode::MySSLToolMode(QWidget *parent) :
             "Default language will be set to English."));
         return;
     }
+}
+
+void MySSLToolMode::setMyPathInfo()
+{
+
 }
 
 MySSLToolMode::~MySSLToolMode()
@@ -236,9 +282,9 @@ void MySSLToolMode::on_addNewCA_clicked()
 
     // sign server cert ...
     if (!dir.exists(QString("%1/%2/server/%3")
-        .arg(ui->pathEdit      ->text().trimmed())
-        .arg(ui->domainEdit    ->text().trimmed())
-        .arg(ui->serverNameEdit->text().trimmed()))) {
+        .arg(ui->pathEdit       ->text().trimmed())
+        .arg(ui->domainEdit     ->text().trimmed())
+        .arg(ui->serverOwnerEdit->text().trimmed()))) {
         if (!dir.mkpath(QString("%1/%2/server/%3")
             .arg(ui->pathEdit       ->text().trimmed())
             .arg(ui->domainEdit     ->text().trimmed())
@@ -264,7 +310,7 @@ void MySSLToolMode::on_addNewCA_clicked()
     QString("openssl req -new -key %1/%2/server/%3/server.key.pem "
             "-passin pass:$4  -out %1/%2/server/%3/server.req.crt "
             "-subj '/C=%5/ST=%6/L=%7/O=%8/OU=%9/CN=%10'")
-            .arg(ui->serverPathEdit    ->text().trimmed())
+            .arg(ui->pathEdit          ->text().trimmed())
             .arg(ui->domainEdit        ->text().trimmed())
             .arg(ui->serverOwnerEdit   ->text().trimmed())
             .arg(ui->serverPasswordEdit->text().trimmed())
@@ -374,3 +420,6 @@ void MySSLToolMode::on_openPath2_clicked() { ui->serverPathEdit->setText(openPat
 void MySSLToolMode::on_openPath3_clicked() { ui->pcPathEdit    ->setText(openPath()); }
 void MySSLToolMode::on_openPath4_clicked() { ui->appPathEdit   ->setText(openPath()); }
 void MySSLToolMode::on_openPath5_clicked() { ui->humPathEdit   ->setText(openPath()); }
+
+}   // namespace: Internal
+}   // namespace: LinuxSSLTool

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>627</width>
-    <height>506</height>
+    <width>610</width>
+    <height>479</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -149,6 +149,11 @@ QTabBar::tab:!selected {
                <layout class="QVBoxLayout" name="verticalLayout_3">
                 <item>
                  <widget class="QPushButton" name="addNewCA">
+                  <property name="styleSheet">
+                   <string notr="true">:hover {background-color: qlineargradient(spread:pad, 
+x1:1, y1:0.721591, x2:1, y2:0, stop:0 rgba(0, 255, 0, 
+237), stop:1 rgba(255, 255, 255, 255));}</string>
+                  </property>
                   <property name="text">
                    <string>Add New</string>
                   </property>
@@ -169,6 +174,9 @@ QTabBar::tab:!selected {
                 </item>
                 <item>
                  <widget class="QPushButton" name="delCA">
+                  <property name="styleSheet">
+                   <string notr="true">:hover {background-color: qlineargradient(spread:pad, x1:1, y1:0.506, x2:1, y2:0, stop:0 rgba(241, 26, 26, 241), stop:1 rgba(255, 255, 255, 255));}</string>
+                  </property>
                   <property name="text">
                    <string>Delete</string>
                   </property>
@@ -201,7 +209,7 @@ QTabBar::tab:!selected {
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>176</width>
+                      <width>170</width>
                       <height>185</height>
                      </rect>
                     </property>
@@ -239,9 +247,39 @@ QTabBar::tab:!selected {
                         <item>
                          <layout class="QFormLayout" name="formLayout">
                           <item row="0" column="1">
-                           <widget class="QLineEdit" name="pathEdit">
+                           <widget class="MyLineSSLEdit" name="pathEdit">
+                            <property name="cursor">
+                             <cursorShape>ArrowCursor</cursorShape>
+                            </property>
+                            <property name="mouseTracking">
+                             <bool>true</bool>
+                            </property>
+                            <property name="focusPolicy">
+                             <enum>Qt::ClickFocus</enum>
+                            </property>
+                            <property name="toolTip">
+                             <string/>
+                            </property>
+                            <property name="toolTipDuration">
+                             <number>1</number>
+                            </property>
+                            <property name="statusTip">
+                             <string/>
+                            </property>
+                            <property name="whatsThis">
+                             <string/>
+                            </property>
+                            <property name="accessibleName">
+                             <string/>
+                            </property>
+                            <property name="layoutDirection">
+                             <enum>Qt::RightToLeft</enum>
+                            </property>
                             <property name="text">
                              <string>/tmp</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>1</number>
                             </property>
                            </widget>
                           </item>
@@ -256,9 +294,12 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="2" column="1">
-                           <widget class="QLineEdit" name="domainEdit">
+                           <widget class="MyLineSSLEdit" name="domainEdit">
                             <property name="text">
                              <string>www.example.com</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>2</number>
                             </property>
                            </widget>
                           </item>
@@ -273,7 +314,7 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="3" column="1">
-                           <widget class="QLineEdit" name="ownerEdit">
+                           <widget class="MyLineSSLEdit" name="ownerEdit">
                             <property name="maximumSize">
                              <size>
                               <width>200</width>
@@ -282,6 +323,9 @@ QTabBar::tab:!selected {
                             </property>
                             <property name="text">
                              <string>oaule32</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>3</number>
                             </property>
                            </widget>
                           </item>
@@ -306,9 +350,12 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="4" column="1">
-                           <widget class="QLineEdit" name="daysEdit">
+                           <widget class="MyLineSSLEdit" name="daysEdit">
                             <property name="text">
                              <string>1024</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>4</number>
                             </property>
                            </widget>
                           </item>
@@ -323,7 +370,7 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="5" column="1">
-                           <widget class="QLineEdit" name="passwordEdit">
+                           <widget class="MyLineSSLEdit" name="passwordEdit">
                             <property name="inputMask">
                              <string/>
                             </property>
@@ -332,6 +379,9 @@ QTabBar::tab:!selected {
                             </property>
                             <property name="echoMode">
                              <enum>QLineEdit::Password</enum>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>5</number>
                             </property>
                            </widget>
                           </item>
@@ -405,6 +455,11 @@ QTabBar::tab:!selected {
                <layout class="QVBoxLayout" name="verticalLayout_5">
                 <item>
                  <widget class="QPushButton" name="pushButton_3">
+                  <property name="styleSheet">
+                   <string notr="true">:hover {background-color: qlineargradient(spread:pad, 
+x1:1, y1:0.721591, x2:1, y2:0, stop:0 rgba(0, 255, 0, 
+237), stop:1 rgba(255, 255, 255, 255));}</string>
+                  </property>
                   <property name="text">
                    <string>Add New</string>
                   </property>
@@ -425,6 +480,9 @@ QTabBar::tab:!selected {
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushButton_4">
+                  <property name="styleSheet">
+                   <string notr="true">:hover {background-color: qlineargradient(spread:pad, x1:1, y1:0.506, x2:1, y2:0, stop:0 rgba(241, 26, 26, 241), stop:1 rgba(255, 255, 255, 255));}</string>
+                  </property>
                   <property name="text">
                    <string>Delete</string>
                   </property>
@@ -457,7 +515,7 @@ QTabBar::tab:!selected {
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>179</width>
+                      <width>174</width>
                       <height>369</height>
                      </rect>
                     </property>
@@ -505,9 +563,12 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="0" column="1">
-                           <widget class="QLineEdit" name="serverPathEdit">
+                           <widget class="MyLineSSLEdit" name="serverPathEdit">
                             <property name="text">
                              <string>/tmp</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>6</number>
                             </property>
                            </widget>
                           </item>
@@ -529,9 +590,12 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="2" column="1">
-                           <widget class="QLineEdit" name="serverNameEdit">
+                           <widget class="MyLineSSLEdit" name="serverNameEdit">
                             <property name="text">
                              <string>hwg.example.com</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>7</number>
                             </property>
                            </widget>
                           </item>
@@ -546,7 +610,7 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="3" column="1">
-                           <widget class="QLineEdit" name="serverOwnerEdit">
+                           <widget class="MyLineSSLEdit" name="serverOwnerEdit">
                             <property name="maximumSize">
                              <size>
                               <width>200</width>
@@ -555,6 +619,9 @@ QTabBar::tab:!selected {
                             </property>
                             <property name="text">
                              <string>paulsen</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>8</number>
                             </property>
                            </widget>
                           </item>
@@ -569,9 +636,12 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="4" column="1">
-                           <widget class="QLineEdit" name="serverDaysEdit">
+                           <widget class="MyLineSSLEdit" name="serverDaysEdit">
                             <property name="text">
                              <string>365</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>9</number>
                             </property>
                            </widget>
                           </item>
@@ -586,7 +656,7 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="5" column="1">
-                           <widget class="QLineEdit" name="serverPasswordEdit">
+                           <widget class="MyLineSSLEdit" name="serverPasswordEdit">
                             <property name="inputMask">
                              <string/>
                             </property>
@@ -595,6 +665,9 @@ QTabBar::tab:!selected {
                             </property>
                             <property name="echoMode">
                              <enum>QLineEdit::Password</enum>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>10</number>
                             </property>
                            </widget>
                           </item>
@@ -609,9 +682,12 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="6" column="1">
-                           <widget class="QLineEdit" name="serverCEdit">
+                           <widget class="MyLineSSLEdit" name="serverCEdit">
                             <property name="text">
                              <string>DE</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>11</number>
                             </property>
                            </widget>
                           </item>
@@ -632,16 +708,22 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="7" column="1">
-                           <widget class="QLineEdit" name="serverSTEdit">
+                           <widget class="MyLineSSLEdit" name="serverSTEdit">
                             <property name="text">
                              <string>Thüringen</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>12</number>
                             </property>
                            </widget>
                           </item>
                           <item row="9" column="1">
-                           <widget class="QLineEdit" name="serverOEdit">
+                           <widget class="MyLineSSLEdit" name="serverOEdit">
                             <property name="text">
                              <string>non-profit</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>14</number>
                             </property>
                            </widget>
                           </item>
@@ -666,9 +748,12 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="8" column="1">
-                           <widget class="QLineEdit" name="serverLEdit">
+                           <widget class="MyLineSSLEdit" name="serverLEdit">
                             <property name="text">
                              <string>1234 - Dorfleben</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>13</number>
                             </property>
                            </widget>
                           </item>
@@ -683,9 +768,12 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="10" column="1">
-                           <widget class="QLineEdit" name="serverOUEdit">
+                           <widget class="MyLineSSLEdit" name="serverOUEdit">
                             <property name="text">
                              <string>IT - Labor</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>15</number>
                             </property>
                            </widget>
                           </item>
@@ -700,9 +788,12 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="11" column="1">
-                           <widget class="QLineEdit" name="serverCNEdit">
+                           <widget class="MyLineSSLEdit" name="serverCNEdit">
                             <property name="text">
                              <string>example.com</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>16</number>
                             </property>
                            </widget>
                           </item>
@@ -763,6 +854,11 @@ QTabBar::tab:!selected {
                <layout class="QVBoxLayout" name="verticalLayout_10">
                 <item>
                  <widget class="QPushButton" name="pushButton_5">
+                  <property name="styleSheet">
+                   <string notr="true">:hover {background-color: qlineargradient(spread:pad, 
+x1:1, y1:0.721591, x2:1, y2:0, stop:0 rgba(0, 255, 0, 
+237), stop:1 rgba(255, 255, 255, 255));}</string>
+                  </property>
                   <property name="text">
                    <string>Add New</string>
                   </property>
@@ -783,6 +879,9 @@ QTabBar::tab:!selected {
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushButton_6">
+                  <property name="styleSheet">
+                   <string notr="true">:hover {background-color: qlineargradient(spread:pad, x1:1, y1:0.506, x2:1, y2:0, stop:0 rgba(241, 26, 26, 241), stop:1 rgba(255, 255, 255, 255));}</string>
+                  </property>
                   <property name="text">
                    <string>Delete</string>
                   </property>
@@ -815,7 +914,7 @@ QTabBar::tab:!selected {
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>179</width>
+                      <width>173</width>
                       <height>185</height>
                      </rect>
                     </property>
@@ -853,9 +952,12 @@ QTabBar::tab:!selected {
                         <item>
                          <layout class="QFormLayout" name="formLayout_3">
                           <item row="0" column="1">
-                           <widget class="QLineEdit" name="pcPathEdit">
+                           <widget class="MyLineSSLEdit" name="pcPathEdit">
                             <property name="text">
                              <string>/tmp</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>17</number>
                             </property>
                            </widget>
                           </item>
@@ -870,7 +972,11 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="2" column="1">
-                           <widget class="QLineEdit" name="domainEdit_3"/>
+                           <widget class="MyLineSSLEdit" name="pcNameEdit">
+                            <property name="Tag" stdset="0">
+                             <number>18</number>
+                            </property>
+                           </widget>
                           </item>
                           <item row="2" column="0">
                            <widget class="QLabel" name="label_15">
@@ -883,12 +989,15 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="3" column="1">
-                           <widget class="QLineEdit" name="ownerEdit_3">
+                           <widget class="MyLineSSLEdit" name="pcOwnerEdit">
                             <property name="maximumSize">
                              <size>
                               <width>200</width>
                               <height>16777215</height>
                              </size>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>19</number>
                             </property>
                            </widget>
                           </item>
@@ -913,9 +1022,12 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="4" column="1">
-                           <widget class="QLineEdit" name="daysEdit_3">
+                           <widget class="MyLineSSLEdit" name="pcDaysEdit">
                             <property name="text">
                              <string>1024</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>20</number>
                             </property>
                            </widget>
                           </item>
@@ -930,12 +1042,15 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="5" column="1">
-                           <widget class="QLineEdit" name="passwordEdit_3">
+                           <widget class="MyLineSSLEdit" name="pcPasswordEdit">
                             <property name="inputMask">
                              <string/>
                             </property>
                             <property name="echoMode">
                              <enum>QLineEdit::Password</enum>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>21</number>
                             </property>
                            </widget>
                           </item>
@@ -1003,6 +1118,11 @@ QTabBar::tab:!selected {
                <layout class="QVBoxLayout" name="verticalLayout_13">
                 <item>
                  <widget class="QPushButton" name="pushButton_7">
+                  <property name="styleSheet">
+                   <string notr="true">:hover {background-color: qlineargradient(spread:pad, 
+x1:1, y1:0.721591, x2:1, y2:0, stop:0 rgba(0, 255, 0, 
+237), stop:1 rgba(255, 255, 255, 255));}</string>
+                  </property>
                   <property name="text">
                    <string>Add New</string>
                   </property>
@@ -1023,6 +1143,9 @@ QTabBar::tab:!selected {
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushButton_8">
+                  <property name="styleSheet">
+                   <string notr="true">:hover {background-color: qlineargradient(spread:pad, x1:1, y1:0.506, x2:1, y2:0, stop:0 rgba(241, 26, 26, 241), stop:1 rgba(255, 255, 255, 255));}</string>
+                  </property>
                   <property name="text">
                    <string>Delete</string>
                   </property>
@@ -1055,7 +1178,7 @@ QTabBar::tab:!selected {
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>179</width>
+                      <width>173</width>
                       <height>185</height>
                      </rect>
                     </property>
@@ -1093,9 +1216,12 @@ QTabBar::tab:!selected {
                         <item>
                          <layout class="QFormLayout" name="formLayout_4">
                           <item row="0" column="1">
-                           <widget class="QLineEdit" name="appPathEdit">
+                           <widget class="MyLineSSLEdit" name="appPathEdit">
                             <property name="text">
                              <string>/tmp</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>22</number>
                             </property>
                            </widget>
                           </item>
@@ -1110,7 +1236,11 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="2" column="1">
-                           <widget class="QLineEdit" name="domainEdit_4"/>
+                           <widget class="MyLineSSLEdit" name="domainEdit_4">
+                            <property name="Tag" stdset="0">
+                             <number>23</number>
+                            </property>
+                           </widget>
                           </item>
                           <item row="2" column="0">
                            <widget class="QLabel" name="label_20">
@@ -1123,12 +1253,15 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="3" column="1">
-                           <widget class="QLineEdit" name="ownerEdit_4">
+                           <widget class="MyLineSSLEdit" name="ownerEdit_4">
                             <property name="maximumSize">
                              <size>
                               <width>200</width>
                               <height>16777215</height>
                              </size>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>24</number>
                             </property>
                            </widget>
                           </item>
@@ -1153,9 +1286,12 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="4" column="1">
-                           <widget class="QLineEdit" name="daysEdit_4">
+                           <widget class="MyLineSSLEdit" name="daysEdit_4">
                             <property name="text">
                              <string>1024</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>25</number>
                             </property>
                            </widget>
                           </item>
@@ -1170,12 +1306,15 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="5" column="1">
-                           <widget class="QLineEdit" name="passwordEdit_4">
+                           <widget class="MyLineSSLEdit" name="passwordEdit_4">
                             <property name="inputMask">
                              <string/>
                             </property>
                             <property name="echoMode">
                              <enum>QLineEdit::Password</enum>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>26</number>
                             </property>
                            </widget>
                           </item>
@@ -1243,6 +1382,11 @@ QTabBar::tab:!selected {
                <layout class="QVBoxLayout" name="verticalLayout_16">
                 <item>
                  <widget class="QPushButton" name="pushButton_9">
+                  <property name="styleSheet">
+                   <string notr="true">:hover {background-color: qlineargradient(spread:pad, 
+x1:1, y1:0.721591, x2:1, y2:0, stop:0 rgba(0, 255, 0, 
+237), stop:1 rgba(255, 255, 255, 255));}</string>
+                  </property>
                   <property name="text">
                    <string>Add New</string>
                   </property>
@@ -1263,6 +1407,9 @@ QTabBar::tab:!selected {
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushButton_10">
+                  <property name="styleSheet">
+                   <string notr="true">:hover {background-color: qlineargradient(spread:pad, x1:1, y1:0.506, x2:1, y2:0, stop:0 rgba(241, 26, 26, 241), stop:1 rgba(255, 255, 255, 255));}</string>
+                  </property>
                   <property name="text">
                    <string>Delete</string>
                   </property>
@@ -1295,7 +1442,7 @@ QTabBar::tab:!selected {
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>179</width>
+                      <width>173</width>
                       <height>185</height>
                      </rect>
                     </property>
@@ -1333,9 +1480,12 @@ QTabBar::tab:!selected {
                         <item>
                          <layout class="QFormLayout" name="formLayout_5">
                           <item row="0" column="1">
-                           <widget class="QLineEdit" name="humPathEdit">
+                           <widget class="MyLineSSLEdit" name="humPathEdit">
                             <property name="text">
                              <string>/tmp</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>28</number>
                             </property>
                            </widget>
                           </item>
@@ -1350,7 +1500,11 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="2" column="1">
-                           <widget class="QLineEdit" name="domainEdit_5"/>
+                           <widget class="MyLineSSLEdit" name="domainEdit_5">
+                            <property name="Tag" stdset="0">
+                             <number>29</number>
+                            </property>
+                           </widget>
                           </item>
                           <item row="2" column="0">
                            <widget class="QLabel" name="label_25">
@@ -1363,12 +1517,15 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="3" column="1">
-                           <widget class="QLineEdit" name="ownerEdit_5">
+                           <widget class="MyLineSSLEdit" name="ownerEdit_5">
                             <property name="maximumSize">
                              <size>
                               <width>200</width>
                               <height>16777215</height>
                              </size>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>30</number>
                             </property>
                            </widget>
                           </item>
@@ -1393,9 +1550,12 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="4" column="1">
-                           <widget class="QLineEdit" name="daysEdit_5">
+                           <widget class="MyLineSSLEdit" name="daysEdit_5">
                             <property name="text">
                              <string>1024</string>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>31</number>
                             </property>
                            </widget>
                           </item>
@@ -1410,12 +1570,15 @@ QTabBar::tab:!selected {
                            </widget>
                           </item>
                           <item row="5" column="1">
-                           <widget class="QLineEdit" name="passwordEdit_5">
+                           <widget class="MyLineSSLEdit" name="passwordEdit_5">
                             <property name="inputMask">
                              <string/>
                             </property>
                             <property name="echoMode">
                              <enum>QLineEdit::Password</enum>
+                            </property>
+                            <property name="Tag" stdset="0">
+                             <number>32</number>
                             </property>
                            </widget>
                           </item>
@@ -1625,6 +1788,13 @@ border-radius:8px;</string>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyLineSSLEdit</class>
+   <extends>QLineEdit</extends>
+   <header>lineedit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

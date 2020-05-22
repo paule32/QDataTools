@@ -59,11 +59,13 @@ INCLUDEPATH += \
     $${UI_DIR}/..
 
 SOURCES += \
+    $$PWD/lineedit.cpp \
     $$PWD/ssltool.cpp \
     $$PWD/ssltool_widget.cpp \
     $$PWD/myssltoolmode.cpp
 
 HEADERS += \
+    $$PWD/lineedit.h \
     $$PWD/ssltool.h \
     $$PWD/ssltool_global.h \
     $$PWD/ssltool_constants.h \
