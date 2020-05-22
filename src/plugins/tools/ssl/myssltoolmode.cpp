@@ -24,6 +24,7 @@
 #include <cstdio>
 #include <vector>
 
+#include <QComboBox>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -42,11 +43,11 @@
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 
+#include <QSslCertificate>
+#include <QSslConfiguration>
+
 #include "myssltoolmode.h"
 #include "ui_myssltoolmode.h"
-
-namespace LinuxSSLTool {
-namespace Internal {
 
 std::vector<my_ssl_edit_struct> ssl_edit_vector;
 
@@ -133,36 +134,27 @@ MySSLToolMode::MySSLToolMode(QWidget *parent) :
             "Default language will be set to English."));
         return;
     }
-}
 
-void MySSLToolMode::setMyPathInfo()
-{
+    QComboBox * cmb = new QComboBox(this);
+    cmb->addItem("Item 1", "value1");
+    cmb->addItem("Item 2", "value2");
+    cmb->addItem("Item 3", "value3");
 
+    QTreeWidgetItem * treeItem = new QTreeWidgetItem(ui->treeWidget);
+
+    treeItem->setIcon(0,QIcon(":/img/icon-folder.png"));
+    treeItem->setText(0,"A");
+    treeItem->setText(1,"B");
+    treeItem->setText(2,"C");
+    treeItem->setText(3,"D");
+
+    ui->treeWidget->setItemWidget(treeItem, 3, cmb);
 }
 
 MySSLToolMode::~MySSLToolMode()
 {
     delete ui;
 }
-
-#if 0
-void MySSLToolMode::on_createCert_clicked()
-{
-    QTreeWidgetItem * m_aitem = ui->certsTree->currentItem();
-    if (m_aitem == nullptr) {
-        QMessageBox::warning(0,
-        tr("Warning"),
-        tr("No CA is selected."));
-        return;
-    }
-    if (!m_aitem->text(0).startsWith("CA")) {
-        QMessageBox::warning(0,
-        tr("Warning"),
-        tr("No CA is selected."));
-        return;
-    }
-}
-#endif
 
 bool MySSLToolMode::write_cert(QString pro_str)
 {
@@ -380,16 +372,29 @@ void MySSLToolMode::on_addNewCA_clicked()
 
 void MySSLToolMode::pathEditTextChanged(const QString &arg1, QLineEdit * pathEdit)
 {
-    QFileInfo inf(arg1);
+    QString m_str = arg1;
+    if (m_str.trimmed().length() < 2) {
+        m_str = QString("/tmp");
+        pathEdit->setText(m_str);
+    }
+
+    QFileInfo inf(m_str);
     if ((!inf.isWritable() && !inf.isReadable() && !inf.isDir())) {
         ui->textBrowser->document()->setHtml(
         "<p><span style='color:#a40000;'><b><i>Path could not be found.</i></b></span></p>\n"
         "<p>Make sure that the directory is write able, and not a existing file.</p>");
-        pathEdit->setStyleSheet("color:rgb(190,0,0);font-weight:bold;");
-    }   else {
-        pathEdit->setStyleSheet("color:#0;font-weight:normal;");
-        ui->textBrowser->document()->setHtml("input valid");
+        pathEdit->setStyleSheet(
+        "background-color: qlineargradient(spread:pad, "
+        "x1:1, y1:0.506, x2:1, y2:0, stop:0 rgba(241, 26, 26, "
+        "241), stop:1 rgba(255, 255, 255, 255));"
+        "color:rgb(255,255,0);font-weight:bold;");
+        return;
     }
+
+    pathEdit->setStyleSheet(
+    ":hover {background-color: qlineargradient(spread:pad, "
+    "x1:1, y1:0.721591, x2:1, y2:0, stop:0 rgba(0, 255, 0, "
+    "237), stop:1 rgba(255, 255, 255, 255));}");
 }
 
 void MySSLToolMode::on_pathEdit_textChanged      (const QString &arg1) { pathEditTextChanged(arg1,ui->pathEdit   ); }
@@ -421,5 +426,68 @@ void MySSLToolMode::on_openPath3_clicked() { ui->pcPathEdit    ->setText(openPat
 void MySSLToolMode::on_openPath4_clicked() { ui->appPathEdit   ->setText(openPath()); }
 void MySSLToolMode::on_openPath5_clicked() { ui->humPathEdit   ->setText(openPath()); }
 
-}   // namespace: Internal
-}   // namespace: LinuxSSLTool
+void MySSLToolMode::on_delCA_clicked()
+{
+    QTreeWidgetItem * m_aitem = ui->certsTree->currentItem();
+    if ((m_aitem == nullptr)
+    ||  (!m_aitem->text(0).startsWith("CA"))) {
+        QMessageBox::warning(window(),
+        tr("Warning"),
+        tr("No CA is selected."));
+        return;
+    }
+    ui->certsTree->removeItemWidget(m_aitem,0);
+}
+
+void MySSLToolMode::on_importBtn_clicked()
+{
+    int idx = ui->tabWidget->currentIndex();
+    switch (idx) {
+    case 0:
+        QMessageBox::information(window(),
+        tr("Information"),
+        tr("Please select a folder with ca certificates."));
+        //
+        QString dir = QFileDialog::getExistingDirectory(
+            this, tr("Open Directory"),
+            QDir::homePath(),
+            QFileDialog::ShowDirsOnly |
+            QFileDialog::DontResolveSymlinks);
+
+        if (dir.trimmed().length() < 2)
+            dir = "/tmp";
+
+        // ca certs ...
+        QFileInfo fkey(QString("%1/ca.key.pem").arg(dir));
+        QFileInfo fcrt(QString("%1/ca.crt.pem").arg(dir));
+
+        if (!fkey.exists()) { QMessageBox::warning(window(),tr("Error"),tr("ca.key.pem not found.")); return; }
+        if (!fcrt.exists()) { QMessageBox::warning(window(),tr("Error"),tr("ca.crt.pem not found.")); return; }
+
+        QFile keyFile(QString("%1/ca.key.pem").arg(dir));
+        QFile crtFile(QString("%1/ca.crt.pem").arg(dir));
+
+        keyFile.open(QIODevice::ReadOnly);
+        crtFile.open(QIODevice::ReadOnly);
+
+        const QByteArray keyBytes = keyFile.readAll();
+        const QByteArray crtBytes = crtFile.readAll();
+
+        QSslConfiguration configuration = QSslConfiguration::defaultConfiguration();
+        QList<QSslCertificate> caCertificates;
+
+        caCertificates << QSslCertificate(keyBytes);
+        caCertificates << QSslCertificate(crtBytes);
+
+        configuration.setCaCertificates(caCertificates);
+
+        keyFile.close();
+        crtFile.close();
+
+        QMessageBox::information(window(),tr("Information - Loca"),
+        caCertificates.at(0).issuerInfo(QSslCertificate::LocalityName).at(0));
+
+        // client certs ...
+        break;
+    }
+}

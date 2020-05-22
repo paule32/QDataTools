@@ -35,7 +35,7 @@ CONFIG     += qtplugin release
 TARGET      = $$qtLibraryTarget(paule32_LinuxSSLTool)
 TEMPLATE    = lib
 
-QT += designer widgets
+QT += designer widgets network
 
 RESOURCES  += $$PWD/icons.qrc
 LIBS       += -L$$(QTDIR)/Tools/QtCreator/lib/qtcreator/plugins -lCore -L.
@@ -59,12 +59,14 @@ INCLUDEPATH += \
     $${UI_DIR}/..
 
 SOURCES += \
+    $$PWD/formlayout.cpp \
     $$PWD/lineedit.cpp \
     $$PWD/ssltool.cpp \
     $$PWD/ssltool_widget.cpp \
     $$PWD/myssltoolmode.cpp
 
 HEADERS += \
+    $$PWD/formlayout.h \
     $$PWD/lineedit.h \
     $$PWD/ssltool.h \
     $$PWD/ssltool_global.h \

@@ -6,5 +6,9 @@
 	<file>img/branch-end.png</file>
 	<file>img/branch-more.png</file>
 	<file>img/vline.png</file>
+	<file>img/icon-folder.png</file>
+	<file>img/icon-folder-add.png</file>
+	<file>img/icon-folder-down.png</file>
+	<file>img/icon-folder-setting.png</file>
     </qresource>
 </RCC>

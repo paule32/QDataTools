@@ -27,8 +27,6 @@
 #include "lineedit.h"
 #include "myssltoolmode.h"
 
-using namespace LinuxSSLTool::Internal;
-
 MyLineSSLEdit::MyLineSSLEdit(QWidget * parent)
     : QLineEdit(parent) {
     setMouseTracking(true);
@@ -41,6 +39,10 @@ MyLineSSLEdit::MyLineSSLEdit(QWidget * parent)
 void MyLineSSLEdit::mouseMoveEvent(QMouseEvent *event)
 {
     Q_UNUSED(event)
+    setStyleSheet(
+        ":hover {background-color: qlineargradient(spread:pad, "
+        "x1:1, y1:0.721591, x2:1, y2:0, stop:0 rgba(0, 255, 0, "
+        "237), stop:1 rgba(255, 255, 255, 255));}");
 
     if (Tag() == 1) {
         ssl_edit_vector[0].m_mode->getTextBrowser()->document()->setHtml(
