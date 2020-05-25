@@ -31,7 +31,7 @@ isEmpty(QTDIR): error("The Compilation for this Project need the QTDIR path.")
 
 DEFINES    += LINUXSSLTOOL_LIBRARY
 
-CONFIG     += qtplugin release
+CONFIG     += qtplugin debug
 TARGET      = $$qtLibraryTarget(paule32_LinuxSSLTool)
 TEMPLATE    = lib
 
@@ -82,6 +82,7 @@ DISTFILES += \
     $$PWD/screen1.png \
     $$PWD/ssltool.json \
     $$PWD/ssltool.json.in
+
 
 isEmpty(IDE_SOURCE_TREE): IDE_SOURCE_TREE = $$(QTC_SOURCE)
 isEmpty(IDE_SOURCE_TREE): IDE_SOURCE_TREE = $$system(echo $QTDIR)/Tools/QtCreator/dev

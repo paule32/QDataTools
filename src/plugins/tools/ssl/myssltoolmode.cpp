@@ -24,6 +24,7 @@
 #include <cstdio>
 #include <vector>
 
+#include <QDebug>
 #include <QComboBox>
 #include <QDir>
 #include <QFile>
@@ -43,8 +44,13 @@
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 
+#include <QSslKey>
 #include <QSslCertificate>
 #include <QSslConfiguration>
+#include <QNetworkProxyFactory>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
 
 #include "myssltoolmode.h"
 #include "ui_myssltoolmode.h"
@@ -57,6 +63,15 @@ MySSLToolMode::MySSLToolMode(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->textBrowser->document()->clear();
+
+    // without SSL, we don't need setup stuff
+    // low time consuming ...
+    if (!QSslSocket::supportsSsl()) {
+        QMessageBox::warning(window(),
+        tr("Error"),
+        tr("No SSL support at this platform"));
+        return;
+    }
 
     // ca ...
     ssl_edit_vector.emplace_back(1, ui->pathEdit    , this);
@@ -135,10 +150,19 @@ MySSLToolMode::MySSLToolMode(QWidget *parent) :
         return;
     }
 
-    QComboBox * cmb = new QComboBox(this);
-    cmb->addItem("Item 1", "value1");
-    cmb->addItem("Item 2", "value2");
-    cmb->addItem("Item 3", "value3");
+    QComboBox * cmb_task = new QComboBox(this);
+    QComboBox * cmb_date = new QComboBox(this);
+
+    cmb_task->addItem("Item 1", "value1");
+    cmb_task->addItem("Item 2", "value2");
+    cmb_task->addItem("Item 3", "value3");
+
+    QFont font;
+    font.setBold(true);
+    cmb_date->setFont(font);
+    cmb_date->addItem("2020 - 06 - 02", "till");
+    cmb_date->addItem("2019 - 01 - 01", "from");
+
 
     QTreeWidgetItem * treeItem = new QTreeWidgetItem(ui->treeWidget);
 
@@ -148,7 +172,8 @@ MySSLToolMode::MySSLToolMode(QWidget *parent) :
     treeItem->setText(2,"C");
     treeItem->setText(3,"D");
 
-    ui->treeWidget->setItemWidget(treeItem, 3, cmb);
+    ui->treeWidget->setItemWidget(treeItem, 2, cmb_date);
+    ui->treeWidget->setItemWidget(treeItem, 3, cmb_task);
 }
 
 MySSLToolMode::~MySSLToolMode()
@@ -439,11 +464,20 @@ void MySSLToolMode::on_delCA_clicked()
     ui->certsTree->removeItemWidget(m_aitem,0);
 }
 
+static void msgError(int flag)
+{
+    if (flag == 1)
+    QMessageBox::warning(0,"Error","key file 0 byte error."); else
+    QMessageBox::warning(0,"Error","crt file 0 byte error.");
+}
+
 void MySSLToolMode::on_importBtn_clicked()
 {
     int idx = ui->tabWidget->currentIndex();
     switch (idx) {
     case 0:
+        QNetworkProxyFactory::setUseSystemConfiguration(true);
+
         QMessageBox::information(window(),
         tr("Information"),
         tr("Please select a folder with ca certificates."));
@@ -457,7 +491,7 @@ void MySSLToolMode::on_importBtn_clicked()
         if (dir.trimmed().length() < 2)
             dir = "/tmp";
 
-        // ca certs ...
+        // ca.key certs ...
         QFileInfo fkey(QString("%1/ca.key.pem").arg(dir));
         QFileInfo fcrt(QString("%1/ca.crt.pem").arg(dir));
 
@@ -467,27 +501,79 @@ void MySSLToolMode::on_importBtn_clicked()
         QFile keyFile(QString("%1/ca.key.pem").arg(dir));
         QFile crtFile(QString("%1/ca.crt.pem").arg(dir));
 
-        keyFile.open(QIODevice::ReadOnly);
-        crtFile.open(QIODevice::ReadOnly);
+        if (!keyFile.open(QIODevice::ReadOnly)) { QMessageBox::warning(window(),tr("ERROR"),tr("ca.key.pem not found.")); return; }
+        if (!crtFile.open(QIODevice::ReadOnly)) { QMessageBox::warning(window(),tr("ERROR"),tr("ca.crt.pem not found.")); return; }
 
         const QByteArray keyBytes = keyFile.readAll();
         const QByteArray crtBytes = crtFile.readAll();
 
-        QSslConfiguration configuration = QSslConfiguration::defaultConfiguration();
-        QList<QSslCertificate> caCertificates;
+        if (keyBytes.trimmed().length() < 2) { msgError(1); return; }
+        if (crtBytes.trimmed().length() < 2) { msgError(2); return; }
 
-        caCertificates << QSslCertificate(keyBytes);
-        caCertificates << QSslCertificate(crtBytes);
+//      QSslCertificate keyCert(keyBytes);
+        QSslCertificate crtCert(crtBytes);
 
-        configuration.setCaCertificates(caCertificates);
+        QByteArray pass = "test";
+        QSslKey privateKey(keyBytes,QSsl::Rsa,QSsl::Pem,QSsl::PrivateKey, pass);
+        if (privateKey.isNull()) {
+            QMessageBox::warning(window(),
+            tr("Error"),
+            tr("private key error."));
+            return;
+        }   else {
+            QMessageBox::warning(window(),
+            tr("info"),
+            tr("private key ok"));
+        }
+
+
+        qDebug() << "Test CA-List:";
+        qDebug() << crtCert;
+        qDebug() << "=====";
+
+
+        QSslConfiguration sslConfiguration;
+        sslConfiguration.setPrivateKey(privateKey);
+        sslConfiguration.setLocalCertificate(crtCert);
+        sslConfiguration.setProtocol(QSsl::TlsV1_0);
+
+        // ca certs ...
+        QStringList crtinfo;
+        crtinfo  << crtCert.subjectInfo(QSslCertificate::CountryName);
+        qDebug() << "--->>";
+        qDebug() << crtinfo;
+        qDebug() << "<<---";
+        qDebug() << crtCert.subjectInfo(QSslCertificate::CountryName);
+        qDebug() << "oooooooo";
 
         keyFile.close();
         crtFile.close();
 
-        QMessageBox::information(window(),tr("Information - Loca"),
-        caCertificates.at(0).issuerInfo(QSslCertificate::LocalityName).at(0));
 
-        // client certs ...
+        // fake test ...
+        QNetworkAccessManager networkAccessManager;
+        QNetworkRequest       networkRequest(QUrl("https://www.google.com/"));
+        QNetworkReply *       networkReply
+        = networkAccessManager.get(networkRequest);
+
+        QEventLoop loop;
+        QObject::connect(
+            &networkAccessManager,
+            &QNetworkAccessManager::finished,
+            &loop,
+            &QEventLoop::quit);
+        loop.exec();
+
+        if (networkReply->error() > 0) {
+            QMessageBox::information(window(),tr("info"),
+            QString("code: %1\nerror: %2")
+            .arg(networkReply->error())
+            .arg(networkReply->errorString()));
+            delete networkReply;
+            return;
+        }
+
+        delete networkReply;
         break;
     }
 }
