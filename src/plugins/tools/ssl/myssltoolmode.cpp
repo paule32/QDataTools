@@ -256,13 +256,13 @@ void MySSLToolMode::on_addNewCA_clicked()
     if (ui->daysEdit    ->text().trimmed().length() < 1) { msgbox("CA-Days" ); return; }
     if (ui->passwordEdit->text().trimmed().length() < 1) { msgbox("Password"); return; }
 
+    QString tmp_path = QString("%1/%2")
+    .arg(ui->pathEdit  ->text().trimmed())
+    .arg(ui->domainEdit->text().trimmed());
+
     // ca root folder ...
-    if (!dir.exists(QString("%1/%2")
-        .arg(ui->pathEdit  ->text().trimmed())
-        .arg(ui->domainEdit->text().trimmed()))) {
-        if (!dir.mkpath(QString("%1/%2")
-            .arg(ui->pathEdit  ->text().trimmed())
-            .arg(ui->domainEdit->text().trimmed()))) {
+    if (!dir.exists(tmp_path)) {
+        if (!dir.mkpath(tmp_path)) {
             QMessageBox::warning(window(),
             tr("Error"),
             tr("ca-root folder could not be created."));
@@ -270,30 +270,36 @@ void MySSLToolMode::on_addNewCA_clicked()
         }
     }
 
+    QString ca_key_pem = QString("%1/ca.key.pem").arg(tmp_path);
+    QString ca_crt_pem = QString("%1/ca.crt.pem").arg(tmp_path);
+    QString ca_keypass =
+    QString("pass:%1")
+    .arg(ui->passwordEdit->text().trimmed());
+
     // openssl CA private key ...
     QString m_ca_root =
-    QString("openssl genrsa -out %1/%2/ca.key.pem -passout pass:%3 -des3 2048")
-            .arg(ui->pathEdit    ->text().trimmed())
-            .arg(ui->domainEdit  ->text().trimmed())
-            .arg(ui->passwordEdit->text().trimmed());
+    QString("openssl genrsa -aes256 -out %1 -passout %2 2048")
+            .arg(ca_key_pem)
+            .arg(ca_keypass);
 
     if (!write_cert(m_ca_root)) return;
+    qDebug() << "out key";
 
     // CA root cert ...
-    QString m_ca_cert =
-    QString("openssl req -new -key %1/%2/ca.key.pem -x509 -days %3 "
-            "-out %1/%2/ca.crt.pem -passin pass:%4 "
-            "-subj '/C=%5/ST=%6/L=%7/O=%8/OU=%9/CN=%10'")
-            .arg(ui->pathEdit    ->text().trimmed())
-            .arg(ui->domainEdit  ->text().trimmed())
-            .arg(ui->daysEdit    ->text().trimmed())
-            .arg(ui->passwordEdit->text().trimmed())
-            .arg(ui->serverCEdit ->text().trimmed())
-            .arg(ui->serverSTEdit->text().trimmed())
-            .arg(ui->serverLEdit ->text().trimmed())
-            .arg(ui->serverOEdit ->text().trimmed())
-            .arg(ui->serverOUEdit->text().trimmed())
-            .arg(ui->serverCNEdit->text().trimmed());
+    QString m_ca_cert = QString(
+        "openssl req -x509 -new -nodes -extensions v3_ca "
+        "-key %1 -out %2 -sha512 -passin %3 -days %4 "
+        "-subj \"/C=%5/ST=%6/L=%7/O=%8/OU=%9/CN=%10\"")
+        .arg(ca_key_pem)
+        .arg(ca_crt_pem)
+        .arg(ca_keypass)
+        .arg(ui->daysEdit    ->text().trimmed())
+        .arg(ui->serverCEdit ->text().trimmed())
+        .arg(ui->serverSTEdit->text().trimmed())
+        .arg(ui->serverLEdit ->text().trimmed())
+        .arg(ui->serverOEdit ->text().trimmed())
+        .arg(ui->serverOUEdit->text().trimmed())
+        .arg(ui->serverCNEdit->text().trimmed());
 
     if (!write_cert(m_ca_cert)) return;
 
@@ -315,18 +321,19 @@ void MySSLToolMode::on_addNewCA_clicked()
 
     QString m_sv_cert =
     QString("openssl genrsa -out %1/%2/server/%3/server.key.pem "
-            "-passout pass:%4 -des3 2048")
+            "-passout pass:%4 2048")
             .arg(ui->pathEdit  ->text().trimmed())
             .arg(ui->domainEdit->text().trimmed())
             .arg(ui->serverOwnerEdit   ->text().trimmed())
             .arg(ui->serverPasswordEdit->text().trimmed());
 
     if (!write_cert(m_sv_cert)) return;
+    qDebug() << "pppoop";
 
     QString m_rq_cert =
     QString("openssl req -new -key %1/%2/server/%3/server.key.pem "
             "-passin pass:$4  -out %1/%2/server/%3/server.req.crt "
-            "-subj '/C=%5/ST=%6/L=%7/O=%8/OU=%9/CN=%10'")
+            "-subj \"/C=%5/ST=%6/L=%7/O=%8/OU=%9/CN=%10\" -sha512")
             .arg(ui->pathEdit          ->text().trimmed())
             .arg(ui->domainEdit        ->text().trimmed())
             .arg(ui->serverOwnerEdit   ->text().trimmed())
@@ -510,9 +517,7 @@ void MySSLToolMode::on_importBtn_clicked()
         if (keyBytes.trimmed().length() < 2) { msgError(1); return; }
         if (crtBytes.trimmed().length() < 2) { msgError(2); return; }
 
-//      QSslCertificate keyCert(keyBytes);
-        QSslCertificate crtCert(crtBytes);
-
+        QSslCertificate keyCert(keyBytes);
         QByteArray pass = "test";
         QSslKey privateKey(keyBytes,QSsl::Rsa,QSsl::Pem,QSsl::PrivateKey, pass);
         if (privateKey.isNull()) {
@@ -527,15 +532,37 @@ void MySSLToolMode::on_importBtn_clicked()
         }
 
 
-        qDebug() << "Test CA-List:";
-        qDebug() << crtCert;
-        qDebug() << "=====";
-
+        QSslCertificate crtCert(crtBytes);
+        QByteArray cass = "test";
+        QSslKey privateCrt(crtBytes,QSsl::Rsa,QSsl::Pem,QSsl::PublicKey, cass);
+        if (privateCrt.isNull()) {
+            QMessageBox::warning(window(),
+            tr("Error"),
+            tr("private crt key error."));
+            return;
+        }   else {
+            QMessageBox::warning(window(),
+            tr("info"),
+            tr("private crt key ok"));
+        }
 
         QSslConfiguration sslConfiguration;
         sslConfiguration.setPrivateKey(privateKey);
+        sslConfiguration.setLocalCertificate(keyCert);
+        sslConfiguration.setProtocol(QSsl::TlsV1_0);
+
+        qDebug() << "Test CA-List:";
+        qDebug() << keyCert;
+
+
+        sslConfiguration.setPrivateKey(privateCrt);
         sslConfiguration.setLocalCertificate(crtCert);
         sslConfiguration.setProtocol(QSsl::TlsV1_0);
+
+        qDebug() << "Test CA-crt-List:";
+        qDebug() << crtCert;
+        qDebug() << "=====";
+
 
         // ca certs ...
         QStringList crtinfo;
@@ -545,6 +572,7 @@ void MySSLToolMode::on_importBtn_clicked()
         qDebug() << "<<---";
         qDebug() << crtCert.subjectInfo(QSslCertificate::CountryName);
         qDebug() << "oooooooo";
+
 
         keyFile.close();
         crtFile.close();

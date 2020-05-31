@@ -30,8 +30,9 @@ isEmpty(QTDIR): QTDIR = $$system(echo $QTDIR)
 isEmpty(QTDIR): error("The Compilation for this Project need the QTDIR path.")
 
 TEMPLATE = subdirs
-SUBDIRS  = setup ssl
+SUBDIRS  = setup ssl query
 
 # where to find the sub projects - give the folders
 ssl.subdir   = ssl
 setup.subdir = setup
+query.subdir = query
